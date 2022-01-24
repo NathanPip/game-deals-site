@@ -1,0 +1,11 @@
+{
+  "name": "gamescheap",
+  "version": "1.0.0",
+  "description": "a website to view different video game deals across different video game dealers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
