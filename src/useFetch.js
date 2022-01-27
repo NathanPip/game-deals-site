@@ -1,3 +1,7 @@
+//a hook for fetching data from an api
+//returns the data returned from the api, a loading boolean, and an error if thrown
+
+
 import { useState, useEffect } from "react";
 
 export default function useFetch(url) {

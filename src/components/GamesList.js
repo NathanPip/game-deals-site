@@ -6,7 +6,7 @@ export default function GamesList() {
     const api = ApiMethods;
 
     return (
-        <div>
+        <div className="games-list">
             
         </div>
     )
