@@ -4,10 +4,10 @@ import ApiMethods from '../Api.js';
 
 export default function GamesList() {
     const api = ApiMethods;
-
+    
     return (
         <div className="games-list">
-            
+            <GamesListItem />
         </div>
     )
 }

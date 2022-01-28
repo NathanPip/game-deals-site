@@ -8,8 +8,8 @@ import useFetch from './useFetch.js'
 const optionsToString = (options) => {
     if(!options) return '';
     let string = "";
-    for(let i=0; i<options.length; i++) {
-        string += `?${options[i].key}=${options[i]}`;
+    for(let option in options) {
+        string = string.concat(`${string==="" ? "" : "&"}${option}=${options[option]}`);
     }
     return string;
 }
@@ -19,7 +19,7 @@ const ApiMethods = {
     //returns a list of game deals based on the options specified in the parameters
     GetGameDeals: async (options) => {
         const optionsUrl = optionsToString(options);
-        const list = useFetch(`https://www.cheapshark.com/api/1.0/deals${optionsUrl}`);
+        const list = useFetch(`https://www.cheapshark.com/api/1.0/deals?${optionsUrl}`);
         return list;
     },
     //returns a list of games based on the search term provided in the value parameter, 
