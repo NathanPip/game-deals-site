@@ -1,7 +1,20 @@
-@use "../abstracts/variables";
+@use "../abstracts/variables" as *;
 
 .games-list {
     display: flex;
     flex-direction: column;
-    width: 90%;
+    width: 95%;
+    // background: $secondary-color;
+    .search-input {
+        margin: .5em 0;
+        border-radius: .35em;
+        font-size: 1.25em;
+        font-weight: 400;
+        padding: .25em .45em;
+        border: none;
+        // outline: 2px solid $theme-color;
+        outline: none;
+        background-color: $primary-color-light;
+        color: $secondary-color;
+    }
 }

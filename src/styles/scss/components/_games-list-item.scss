@@ -1,20 +1,46 @@
-@use "../abstracts/variables";
+@use "../abstracts/variables" as *;
 
 .list-item {
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    max-width: 100%;
     padding: .5em;
-    border: 2px solid black;
+    border: 2px solid $theme-color;
+    margin: .25em 0;
+    font-size: .85em;
+    background: $primary-color;
+    color: $secondary-color;
     .item-head {
+        
         display: flex;
+        justify-content: space-between;
         align-items: center;
+        // overflow: hidden;
+        // white-space: nowrap;
+        // text-overflow: ellipsis;
     }
     .item-foot {
         display: flex;
         align-items: center;
+        margin: 0 .75em;
+        .normal-price {
+            display: block;
+            font-size: .65em;
+            text-decoration: line-through;
+        }
+        .item-price {
+            font-size: 1.15em;
+            font-weight: 500;
+        }
+        .item-savings {
+            // font-weight: 400;
+            background: $theme-color;
+            padding: .35em;
+            margin-left: .5em;
+        }
     }
     .item-img {
-        height: 2em;
+        height: 3.5em;
+        margin-right: .45em;
     }
 }

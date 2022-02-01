@@ -1,34 +1,76 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;1,300;1,400&display=swap");
+body {
+  font-family: "Poppins", sans-serif;
+  background: #161616;
+  color: #eee;
+}
+
 h1, h2, h3, h4, h5 {
   margin: 0;
+  font-weight: 500;
 }
 
 .games-list {
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: 95%;
+}
+.games-list .search-input {
+  margin: 0.5em 0;
+  border-radius: 0.35em;
+  font-size: 1.25em;
+  font-weight: 400;
+  padding: 0.25em 0.45em;
+  border: none;
+  outline: none;
+  background-color: #5a5a5a;
+  color: #eee;
 }
 
 .list-item {
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  max-width: 100%;
   padding: 0.5em;
-  border: 2px solid black;
+  border: 2px solid #6f2dbd;
+  margin: 0.25em 0;
+  font-size: 0.85em;
+  background: #161616;
+  color: #eee;
 }
 .list-item .item-head {
   display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 .list-item .item-foot {
   display: flex;
   align-items: center;
+  margin: 0 0.75em;
+}
+.list-item .item-foot .normal-price {
+  display: block;
+  font-size: 0.65em;
+  text-decoration: line-through;
+}
+.list-item .item-foot .item-price {
+  font-size: 1.15em;
+  font-weight: 500;
+}
+.list-item .item-foot .item-savings {
+  background: #6f2dbd;
+  padding: 0.35em;
+  margin-left: 0.5em;
 }
 .list-item .item-img {
-  height: 2em;
+  height: 3.5em;
+  margin-right: 0.45em;
 }
 
-body {
-  background: silver;
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /*# sourceMappingURL=main.css.map */

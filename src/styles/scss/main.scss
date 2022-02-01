@@ -1,7 +1,4 @@
 @use "./general";
 @use "./components/games-list";
 @use "./components/games-list-item";
-
-body {
-    background: silver;
-}
+@use "./components/main"

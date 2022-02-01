@@ -6,7 +6,7 @@ export default function Main() {
     const [options, setOptions] = useState(null);
 
     return (
-        <div>
+        <div className="main">
             <OptionsMenu setOptions={setOptions}/>
             <GamesList options={options}/>
         </div>

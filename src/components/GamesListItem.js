@@ -10,8 +10,11 @@ export default function GamesListItem({game}) {
             </div>  
             <div className="item-middle"></div>  
             <div className="item-foot">
-                <h4 className="item-savings">{Math.round(game.savings)}</h4>
-                <h4 className="item-price">${game.salePrice}</h4>
+                <p className="item-price">
+                <span className="normal-price">${game.normalPrice}</span>
+                {game.salePrice !== "0.00" ? `$${game.salePrice}` : "Free"}
+                </p>
+                <p className="item-savings">{Math.round(game.savings)}%</p>
             </div>  
         </div>
     )

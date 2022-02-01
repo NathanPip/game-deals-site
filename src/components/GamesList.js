@@ -32,7 +32,7 @@ export default function GamesList(options) {
 
   return (
     <div className="games-list">
-      <input type="text" onChange={handleSearch}></input>
+      <input className="search-input" type="text" onChange={handleSearch}></input>
       {games.map((game, index) => {
         if (index === games.length - 1) {
           return(
