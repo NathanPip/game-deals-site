@@ -5,7 +5,7 @@ import useFetch from './useFetch.js'
 
 //takes an object of filter options as its parameter and formats them into a string 
 //that can be concatenated to the end of an api call url
-const optionsToString = (options) => {
+export const optionsToString = (options) => {
     if(!options) return '';
     let string = "";
     for(let option in options) {
@@ -15,22 +15,21 @@ const optionsToString = (options) => {
 }
 
 
-const ApiMethods = {
+export const ApiMethods = {
     //returns a list of game deals based on the options specified in the parameters
-    GetGameDeals: async (options) => {
+    GetGameDeals: (options) => {
         const optionsUrl = optionsToString(options);
-        const list = useFetch(`https://www.cheapshark.com/api/1.0/deals?${optionsUrl}`);
+        let url = `https://www.cheapshark.com/api/1.0/deals?${optionsUrl}`;
+        const list = useFetch(url);
         return list;
     },
     //returns a list of games based on the search term provided in the value parameter, 
     //search term must correspond with title of game
-    GameLookUp: async (value) => {
+    GameLookUp: (value) => {
         return useFetch(`https://www.cheapshark.com/api/1.0/games?title=${value}`)
     },
     //returns a single game based on the games id specified in the parameters
-    GetGame: async (id) => {
+    GetGame: (id) => {
         return useFetch(`https://www.cheapshark.com/api/1.0/games?id=${id}`);
     }
 }
-
-export default ApiMethods;

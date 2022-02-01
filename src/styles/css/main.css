@@ -1,3 +1,32 @@
+h1, h2, h3, h4, h5 {
+  margin: 0;
+}
+
+.games-list {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.5em;
+  border: 2px solid black;
+}
+.list-item .item-head {
+  display: flex;
+  align-items: center;
+}
+.list-item .item-foot {
+  display: flex;
+  align-items: center;
+}
+.list-item .item-img {
+  height: 2em;
+}
+
 body {
   background: silver;
 }

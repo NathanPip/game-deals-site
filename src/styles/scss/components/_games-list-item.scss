@@ -1,0 +1,20 @@
+@use "../abstracts/variables";
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: .5em;
+    border: 2px solid black;
+    .item-head {
+        display: flex;
+        align-items: center;
+    }
+    .item-foot {
+        display: flex;
+        align-items: center;
+    }
+    .item-img {
+        height: 2em;
+    }
+}

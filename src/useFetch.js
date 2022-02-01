@@ -9,7 +9,7 @@ export default function useFetch(url) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchData = async () => {
+  const fetchData = async (url) => {
     if (!url) return;
     try {
       setLoading(true);
@@ -29,7 +29,7 @@ export default function useFetch(url) {
     const abortController = new AbortController();
     fetchData(url);
     return () => abortController.abort();
-  }, []);
+  }, [url]);
 
   return { data, loading, error, fetchData };
 }

@@ -1,0 +1,7 @@
+@use "../abstracts/variables";
+
+.games-list {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
