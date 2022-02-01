@@ -40,6 +40,7 @@ export default function useGetGames(options, query, pageNumber) {
         }).catch( err => {
             setLoading(false);
             setError(err);
+            console.log(err);
         })
         return () => controller.abort();
     }, [options, query, pageNumber])
