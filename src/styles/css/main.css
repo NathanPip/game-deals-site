@@ -10,6 +10,10 @@ h1, h2, h3, h4, h5 {
   font-weight: 500;
 }
 
+.hide {
+  display: none;
+}
+
 .games-list {
   display: flex;
   flex-direction: column;
@@ -71,6 +75,78 @@ h1, h2, h3, h4, h5 {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10em;
+}
+header .title {
+  font-size: 3em;
+  font-weight: 500;
+  border: 1px solid #6f2dbd;
+  padding: 0.5em;
+}
+
+.filter-button {
+  font-size: 2em;
+  color: #eee;
+  background: #6f2dbd;
+  width: 95%;
+  padding: 0.25em 0;
+  border-radius: 0.5em;
+  border: none;
+}
+.filter-button.hide-button {
+  margin: 0.5em;
+  font-size: 1em;
+}
+
+.options-menu {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.25em;
+  border: 1px solid #6f2dbd;
+  width: 95%;
+}
+.options-menu .options-item {
+  margin: 0.5em 0;
+  text-align: center;
+}
+.options-menu .options-item label {
+  font-size: 1.5em;
+  margin-bottom: 0.25em;
+  display: block;
+}
+.options-menu .options-item select {
+  background: #5a5a5a;
+  color: #eee;
+  outline: none;
+  border: none;
+}
+.options-menu .options-item .range-values {
+  display: flex;
+  align-items: center;
+}
+.options-menu .options-item .slider {
+  -webkit-appearance: none;
+  height: 0.2em;
+  flex: 4;
+  background: #6f2dbd;
+  border-radius: 3px;
+}
+.options-menu .options-item .slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 0.75em;
+  height: 0.75em;
+  border-radius: 50%;
+  background: #6f2dbd;
+  cursor: pointer;
+}
+.options-menu .options-item .range-minmax {
+  flex: 1;
 }
 
 /*# sourceMappingURL=main.css.map */
