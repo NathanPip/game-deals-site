@@ -4,7 +4,6 @@ import OptionsMenu from './OptionsMenu';
 
 export default function Main() {
     const [options, setOptions] = useState(null);
-
     return (
         <div className="main">
             <OptionsMenu setOptions={setOptions}/>

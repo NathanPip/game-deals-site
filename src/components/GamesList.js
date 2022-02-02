@@ -5,11 +5,10 @@ import useGetGames from "../hooks/useGetGames.js";
 export default function GamesList(options) {
   const [pageNumber, setPageNumber] = useState(0);
   const [query, setQuery] = useState(null);
-  const [noScroll, setNoScroll] = useState(true);
+  const [noScroll, setNoScroll] = useState(false);
   const { loading, games, error } = useGetGames(options, query, pageNumber);
 
   const observer = useRef();
-
   const handleObservation = useCallback(
     node => {
       if (loading || noScroll) return;
@@ -32,7 +31,7 @@ export default function GamesList(options) {
 
   return (
     <div className="games-list">
-      <input className="search-input" type="text" onChange={handleSearch}></input>
+      <input className="search-input" type="text" onChange={handleSearch} placeholder="search for a game"></input>
       {games.map((game, index) => {
         if (index === games.length - 1) {
           return(

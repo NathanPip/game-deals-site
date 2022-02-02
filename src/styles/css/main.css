@@ -46,6 +46,8 @@ h1, h2, h3, h4, h5 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .list-item .item-foot {
   display: flex;

@@ -15,9 +15,9 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        // overflow: hidden;
-        // white-space: nowrap;
-        // text-overflow: ellipsis;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        // max-width: 70%;
     }
     .item-foot {
         display: flex;
