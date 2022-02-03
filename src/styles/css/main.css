@@ -72,6 +72,9 @@ h1, h2, h3, h4, h5 {
   height: 3.5em;
   margin-right: 0.45em;
 }
+.list-item:hover {
+  cursor: pointer;
+}
 
 .main {
   display: flex;

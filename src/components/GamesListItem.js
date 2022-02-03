@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function GamesListItem({game}) {
+export default function GamesListItem({game, setSelected}) {
     
     return (
-        <div className="list-item">
+        <div className="list-item" onClick={() => setSelected(game)}>
             <div className="item-head">
                 <img className="item-img" src={game.thumb}/>
                 <h3 className="item-title">{game.title}</h3>

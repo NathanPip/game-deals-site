@@ -25,6 +25,7 @@ export default function useGetGames(options, query, pageNumber) {
   useEffect(() => {
     let controller = new AbortController();
     setLoading(true);
+    setError(null);
     if (hasMore) {
       axios({
         method: "GET",
@@ -46,8 +47,11 @@ export default function useGetGames(options, query, pageNumber) {
           setLoading(false);
         })
         .catch(err => {
-          setLoading(false);
-          setError(err);
+          if (err.message != "canceled") {
+            setLoading(false);
+            setError(err);
+            console.log(err);
+          }
         });
     }
     return () => controller.abort();

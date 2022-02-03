@@ -38,13 +38,13 @@ export default function OptionsMenu({ setOptions }) {
     }));
   };
 
-  const handleStoreSelect = (e) => {
+  const handleStoreSelect = e => {
     setCurrentStore(e.target.value);
     setCurrentOptions(prevOptions => ({
       ...prevOptions,
       storeID: e.target.value == 0 ? null : e.target.value
-    }))
-  }
+    }));
+  };
 
   const toggleHide = () => {
     setHiding(prev => !prev);
@@ -61,7 +61,12 @@ export default function OptionsMenu({ setOptions }) {
     <div className="options-menu">
       <div className="options-item">
         <label htmlFor="store-select">Store</label>
-        <select name="store-select" id="store-select" value={currentStore} onChange={handleStoreSelect}>
+        <select
+          name="store-select"
+          id="store-select"
+          value={currentStore}
+          onChange={handleStoreSelect}
+        >
           <option value={0}> select a store</option>
           {!loading &&
             !error &&
