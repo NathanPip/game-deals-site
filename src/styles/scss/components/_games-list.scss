@@ -1,13 +1,43 @@
 @use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as m;
 
 .games-list {
     display: flex;
     flex-direction: column;
     width: 95%;
+    max-width: 1000px;
     // background: $secondary-color;
-    .search-input {
+    .input-group {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .filter-button {
+        font-size: 1.25em;
+        flex: 1;
         margin: .5em 0;
-        border-radius: .35em;
+        color: $secondary-color;
+        background: $theme-color;
+        padding: .25em 0;
+        border-top-right-radius: .35em;
+        border-bottom-right-radius: .35em;
+        border: none;
+        transition: .25s ease-in-out;
+        &.hide-button {
+            margin: .5em;
+            font-size: 1em;
+        }
+        &:hover {
+            cursor: pointer;
+            background: $theme-color-light;
+        }
+    }
+    .search-input {
+        height: 100%;
+        flex: 2;
+        margin: .5em 0;
+        border-top-left-radius: .35em;
+        border-bottom-left-radius: .35em;
         font-size: 1.25em;
         font-weight: 400;
         padding: .25em .45em;
@@ -16,5 +46,13 @@
         outline: none;
         background-color: $primary-color-light;
         color: $secondary-color;
+        &:focus {
+            outline: 1px solid $theme-color;
+        }
+    }
+    @include m.breakpoint($medium) {
+        .search-input {
+            flex: 3;
+        }
     }
 }

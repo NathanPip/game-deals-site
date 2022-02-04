@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+//fetches data for specific game from cheapshark as well as steam api 
+//and combines alol relevant data into single object
+
 export default function useGetGameData(game) {
   const [steamLoading, setSteamLoading] = useState(false);
   const [hasExtras, setHasExtras] = useState(false);
@@ -80,7 +83,6 @@ export default function useGetGameData(game) {
         .then(deals => {
           setData(prev => ({ ...prev, deals: deals }));
           setGameLoading(false);
-          console.log(deals);
           if (!steamLoading) setLoading(false);
         }).then (
         )
@@ -93,7 +95,6 @@ export default function useGetGameData(game) {
     }
     return () => controller.abort();
   }, [game]);
-  console.log(data);
 
   return { data, loading, error, hasExtras };
 }

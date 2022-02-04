@@ -10,6 +10,7 @@
     font-size: .85em;
     background: $primary-color;
     color: $secondary-color;
+    transition: .25s ease-in-out;
     .item-head {
         
         display: flex;
@@ -45,5 +46,6 @@
     }
     &:hover {
         cursor: pointer;
+        background: $primary-color-medium;
     }
 }

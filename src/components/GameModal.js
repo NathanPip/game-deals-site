@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import useGetGameData from "../hooks/useGetGameData.js";
 
+//converts epoch time to Day Month Year format
 const timeConverter = time => {
   let date = new Date(time * 1000);
   return date.toDateString().substring(4);
@@ -12,11 +13,15 @@ export default function GameModal({ game, stores, setSelected }) {
   const [extraContent, setExtraContent] = useState(null);
   const [isShown, setIsShown] = useState(false);
 
+  //closes modal and sets the current selected game to null
   const closeModal = () => {
     setIsShown(false);
     setSelected(null);
   };
 
+  // when all data is resolved split data into main content
+  // which will always be available and extra content which will only be available for games
+  // listed on steam
   useEffect(() => {
     if (data && !loading && game && data) {
       setIsShown(true);
@@ -42,23 +47,20 @@ export default function GameModal({ game, stores, setSelected }) {
           thumbnail: data.thumbnail
         });
       }
-      // console.log(mainContent)
     }
-    console.log(loading);
-    console.log(data);
-    console.log(isShown);
   }, [data, loading, game]);
-  console.log(mainContent);
+
+  //checks to make sure there is a game selected, all data is resolved, whether the modal is visible,
+  // and that mainContent has values
   if (game && !loading && data && mainContent && isShown) {
     if (mainContent.deals) {
       return (
-        // background for modal
         <div className="modal-bg">
           <div className="modal-card">
             <button className="close-btn" onClick={closeModal}>
               X
             </button>
-
+            {/* contains the title and video/thumbnail of game */}
             <div className="modal-head">
               <h2 className="title">{mainContent.title}</h2>
               {!hasExtras && <img className="image" src={mainContent.image} />}
@@ -74,14 +76,18 @@ export default function GameModal({ game, stores, setSelected }) {
                 </video>
               )}
             </div>
-
+                {/* contains the reviews from both metacritic and steam, 
+                the release date as well as a description of the game if available */}
             <div className="modal-main">
               <div className="reviews">
                 {hasExtras && (
                   <p
                     className="steam-reviews"
                     title={`${extraContent.steamRating}% of ${extraContent.steamRatingCount} players rated this game positively`}
-                  ><strong>Reviews: </strong>{`${extraContent.steamRatingText} (${extraContent.steamRatingCount})`}</p>
+                  >
+                    <strong>Reviews: </strong>
+                    {`${extraContent.steamRatingText} (${extraContent.steamRatingCount})`}
+                  </p>
                 )}
                 <p className="metacritic">
                   {mainContent.metacriticScore != 0
@@ -99,7 +105,7 @@ export default function GameModal({ game, stores, setSelected }) {
                 </p>
               )}
             </div>
-
+                {/* contains all of the available deals displayed in a list */}
             <div className="modal-foot">
               <h3>Deals</h3>
               <ul className="deals-list">
@@ -134,5 +140,6 @@ export default function GameModal({ game, stores, setSelected }) {
       );
     }
   }
+  //return null if none of the checks are met
   return null;
 }

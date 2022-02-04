@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+//filters games based on title so duplicates do not show up
 const filterGames = games => {
   const titles = [];
   const filteredGames = [];
@@ -10,6 +11,8 @@ const filterGames = games => {
   }
   return filteredGames;
 };
+
+//fetches game deals from cheapshark api based on options and a search query
 
 export default function useGetGames(options, query, pageNumber) {
   const [loading, setLoading] = useState(true);
@@ -42,7 +45,6 @@ export default function useGetGames(options, query, pageNumber) {
           setGames(prevGames => {
             return filterGames([...prevGames, ...res.data]);
           });
-          console.log(res);
           setLoading(false);
         })
         .catch(err => {

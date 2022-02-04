@@ -1,5 +1,6 @@
 import React from 'react'
 
+//gets game data from games list
 export default function GamesListItem({game, setSelected}) {
     
     return (

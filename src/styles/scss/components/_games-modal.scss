@@ -19,6 +19,7 @@
         align-items: center;
         margin-top: 1.5em;
         width: 90%;
+        max-width: 1000px;
         p {
             margin: 0;
         }
@@ -47,10 +48,15 @@
             font-weight: 600;
             // text-align: center;
         }
-        .video, .image {
+        .video{
             align-self: center;
-            max-width: 100%;
-            // height: 33vh;
+            width: 100%;
+            max-width: 1000px;
+            // max-height: 600px;
+        }
+        .image {
+            align-self: center;
+            min-width: 300px;
         }
         .modal-main {
             // background: $primary-color;
@@ -100,7 +106,11 @@
                     height: 3em;
                     padding: .25em .5em;
                     border: 2px solid $theme-color;
-                    background: rgba($primary-color, 1);
+                    background: $primary-color;
+                    transition: .25s ease-in-out;
+                    &:hover {
+                        background: $primary-color-medium;
+                    }
                 }
             }
         }

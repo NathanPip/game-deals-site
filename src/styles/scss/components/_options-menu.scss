@@ -1,39 +1,28 @@
 @use "../abstracts/variables" as *;
 
 
-.filter-button {
-    font-size: 2em;
-    color: $secondary-color;
-    background: $theme-color;
-    width: 95%;
-    padding: .25em 0;
-    border-radius: .5em;
-    border: none;
-    &.hide-button {
-        margin: .5em;
-        font-size: 1em;
-    }
-}
-
 .options-menu {
     display: flex;
     flex-direction: column;
     font-size: 1.25em;
     border: 1px solid $theme-color;
     width: 95%;
+    margin-bottom: .25em;
     .options-item {
         margin: .5em 0;
         text-align: center;
         label {
-            font-size: 1.5em;
+            font-size: 1.25em;
             margin-bottom: .25em;
             display: block;
         }
         select {
-            background: $primary-color-light;
+            background: $theme-color-light;
             color: $secondary-color;
             outline: none;
             border: none;
+            border-radius: 5px;
+            padding: .15em .25em;
         }
         .range-values {
             display: flex;

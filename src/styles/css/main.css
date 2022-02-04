@@ -4,6 +4,16 @@ body {
   background: #161616;
   color: #eee;
 }
+@media (min-width: 600px) {
+  body {
+    font-size: 1.1rem;
+  }
+}
+@media (min-width: 1000px) {
+  body {
+    font-size: 1.2rem;
+  }
+}
 
 h1, h2, h3, h4, h5 {
   margin: 0;
@@ -18,10 +28,39 @@ h1, h2, h3, h4, h5 {
   display: flex;
   flex-direction: column;
   width: 95%;
+  max-width: 1000px;
+}
+.games-list .input-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.games-list .filter-button {
+  font-size: 1.25em;
+  flex: 1;
+  margin: 0.5em 0;
+  color: #eee;
+  background: #6f2dbd;
+  padding: 0.25em 0;
+  border-top-right-radius: 0.35em;
+  border-bottom-right-radius: 0.35em;
+  border: none;
+  transition: 0.25s ease-in-out;
+}
+.games-list .filter-button.hide-button {
+  margin: 0.5em;
+  font-size: 1em;
+}
+.games-list .filter-button:hover {
+  cursor: pointer;
+  background: #8032d8;
 }
 .games-list .search-input {
+  height: 100%;
+  flex: 2;
   margin: 0.5em 0;
-  border-radius: 0.35em;
+  border-top-left-radius: 0.35em;
+  border-bottom-left-radius: 0.35em;
   font-size: 1.25em;
   font-weight: 400;
   padding: 0.25em 0.45em;
@@ -29,6 +68,14 @@ h1, h2, h3, h4, h5 {
   outline: none;
   background-color: #5a5a5a;
   color: #eee;
+}
+.games-list .search-input:focus {
+  outline: 1px solid #6f2dbd;
+}
+@media (min-width: 600px) {
+  .games-list .search-input {
+    flex: 3;
+  }
 }
 
 .list-item {
@@ -41,6 +88,7 @@ h1, h2, h3, h4, h5 {
   font-size: 0.85em;
   background: #161616;
   color: #eee;
+  transition: 0.25s ease-in-out;
 }
 .list-item .item-head {
   display: flex;
@@ -74,6 +122,7 @@ h1, h2, h3, h4, h5 {
 }
 .list-item:hover {
   cursor: pointer;
+  background: #353535;
 }
 
 .main {
@@ -95,41 +144,30 @@ header .title {
   padding: 0.5em;
 }
 
-.filter-button {
-  font-size: 2em;
-  color: #eee;
-  background: #6f2dbd;
-  width: 95%;
-  padding: 0.25em 0;
-  border-radius: 0.5em;
-  border: none;
-}
-.filter-button.hide-button {
-  margin: 0.5em;
-  font-size: 1em;
-}
-
 .options-menu {
   display: flex;
   flex-direction: column;
   font-size: 1.25em;
   border: 1px solid #6f2dbd;
   width: 95%;
+  margin-bottom: 0.25em;
 }
 .options-menu .options-item {
   margin: 0.5em 0;
   text-align: center;
 }
 .options-menu .options-item label {
-  font-size: 1.5em;
+  font-size: 1.25em;
   margin-bottom: 0.25em;
   display: block;
 }
 .options-menu .options-item select {
-  background: #5a5a5a;
+  background: #8032d8;
   color: #eee;
   outline: none;
   border: none;
+  border-radius: 5px;
+  padding: 0.15em 0.25em;
 }
 .options-menu .options-item .range-values {
   display: flex;
@@ -174,6 +212,7 @@ header .title {
   align-items: center;
   margin-top: 1.5em;
   width: 90%;
+  max-width: 1000px;
 }
 .modal-bg .modal-card p {
   margin: 0;
@@ -202,9 +241,14 @@ header .title {
   font-size: 2em;
   font-weight: 600;
 }
-.modal-bg .modal-card .video, .modal-bg .modal-card .image {
+.modal-bg .modal-card .video {
   align-self: center;
-  max-width: 100%;
+  width: 100%;
+  max-width: 1000px;
+}
+.modal-bg .modal-card .image {
+  align-self: center;
+  min-width: 300px;
 }
 .modal-bg .modal-card .modal-main {
   padding: 0.75em 0;
@@ -256,6 +300,10 @@ header .title {
   padding: 0.25em 0.5em;
   border: 2px solid #6f2dbd;
   background: #161616;
+  transition: 0.25s ease-in-out;
+}
+.modal-bg .modal-card .modal-foot .deals-list li:hover {
+  background: #353535;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 
+//filters stores and only returns stores that are currently active
 const filterActive = (stores) => {
     const filtered = [];
     for(let i=0; i<stores.length; i++){
@@ -9,6 +10,8 @@ const filterActive = (stores) => {
     }
     return filtered;
 } 
+
+//returns all active store data including, store id, store icon, and store name
 
 export default function useGetStoreData() {
     
