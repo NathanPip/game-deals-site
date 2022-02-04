@@ -163,7 +163,7 @@ header .title {
   font-size: 1.15em;
   font-weight: 400;
   line-height: 1.25;
-  background-color: rgba(111, 45, 189, 0.9);
+  background-color: rgba(111, 45, 189, 0.95);
   display: flex;
   justify-content: center;
   z-index: 2;
@@ -173,10 +173,13 @@ header .title {
   flex-direction: column;
   align-items: center;
   margin-top: 1.5em;
-  width: 95%;
+  width: 90%;
 }
 .modal-bg .modal-card p {
   margin: 0;
+}
+.modal-bg .modal-card strong {
+  font-weight: 500;
 }
 .modal-bg .modal-card .close-btn {
   align-self: end;
@@ -197,6 +200,7 @@ header .title {
 .modal-bg .modal-card .title {
   margin: 0.5em 0;
   font-size: 2em;
+  font-weight: 600;
 }
 .modal-bg .modal-card .video, .modal-bg .modal-card .image {
   align-self: center;
@@ -235,6 +239,7 @@ header .title {
   list-style: none;
   padding: 0;
   margin: 0;
+  margin-bottom: 5em;
 }
 .modal-bg .modal-card .modal-foot .deals-list a {
   text-decoration: none;

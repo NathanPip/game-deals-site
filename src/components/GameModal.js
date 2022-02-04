@@ -15,7 +15,7 @@ export default function GameModal({ game, stores, setSelected }) {
   const closeModal = () => {
     setIsShown(false);
     setSelected(null);
-  }
+  };
 
   useEffect(() => {
     if (data && !loading && game && data) {
@@ -40,15 +40,15 @@ export default function GameModal({ game, stores, setSelected }) {
           mainVideo: data.video ? data.video.mp4.max : null,
           backupVideo: data.video ? data.video.webm.max : null,
           thumbnail: data.thumbnail
-        });     
+        });
       }
       // console.log(mainContent)
     }
-    console.log(loading)
-    console.log(data)
-    console.log(isShown)
+    console.log(loading);
+    console.log(data);
+    console.log(isShown);
   }, [data, loading, game]);
-  console.log(mainContent)
+  console.log(mainContent);
   if (game && !loading && data && mainContent && isShown) {
     if (mainContent.deals) {
       return (
@@ -68,11 +68,8 @@ export default function GameModal({ game, stores, setSelected }) {
                   poster={extraContent.thumbnail}
                   controls
                 >
-                  {extraContent.mainVideo && (
-                    <source src={extraContent.mainVideo} />
-                  )}
-                  {!extraContent.mainVideo && (
-                    <source src={extraContent.backupVideo} />
+                  <source src={extraContent.mainVideo} />
+                  <source src={extraContent.backupVideo} />
                   )}
                 </video>
               )}
@@ -84,27 +81,27 @@ export default function GameModal({ game, stores, setSelected }) {
                   <p
                     className="steam-reviews"
                     title={`${extraContent.steamRating}% of ${extraContent.steamRatingCount} players rated this game positively`}
-                  >{`reviews: ${extraContent.steamRatingText} (${extraContent.steamRatingCount})`}</p>
+                  ><strong>Reviews: </strong>{`${extraContent.steamRatingText} (${extraContent.steamRatingCount})`}</p>
                 )}
                 <p className="metacritic">
                   {mainContent.metacriticScore != 0
-                    ? `metacritic score: ${mainContent.metacriticScore}`
+                    ? `Metacritic Score: ${mainContent.metacriticScore}`
                     : null}
                 </p>
               </div>
               <p className="release-date">
-                release date: {mainContent.release}
+                <strong>release date:</strong> {mainContent.release}
               </p>
               {hasExtras && (
                 <p className="desc">
-                  <span className="desc-title">About the game:</span>
+                  <span className="desc-title">About The Game:</span>
                   {extraContent.desc}
                 </p>
               )}
             </div>
 
             <div className="modal-foot">
-              <h3>deals</h3>
+              <h3>Deals</h3>
               <ul className="deals-list">
                 {mainContent.deals &&
                   mainContent.deals.map(deal => {
