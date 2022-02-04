@@ -1,0 +1,102 @@
+@use "../abstracts/variables" as *;
+
+.modal-bg {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    inset: 0;
+    overflow: scroll;
+    font-size: 1.15em;
+    font-weight: 400;
+    line-height: 1.25;
+    background-color: rgba($theme-color, .9);
+    display: flex;
+    justify-content: center;
+    z-index: 2;
+    .modal-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 1.5em;
+        width: 95%;
+        p {
+            margin: 0;
+        }
+        .close-btn {
+            align-self: end;
+            background: transparent;
+            color: $secondary-color;
+            font-size: 1.5em;
+            border: none;
+            margin: 0 .5em;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        .modal-head {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+        .title {
+            margin: .5em 0 ;
+            font-size: 2em;
+            // text-align: center;
+        }
+        .video, .image {
+            align-self: center;
+            max-width: 100%;
+        }
+        .modal-main {
+            // background: $primary-color;
+            padding: .75em 0;
+            .reviews {
+                font-size: .75em;
+                display: flex;
+                justify-content: space-between; 
+            }
+            .release-date {
+                margin-top: .5em;
+                font-size: .85em;
+            }
+            .desc {
+                margin: .5em 0;
+            }
+            .desc-title {
+              display: block;
+              font-size: 1.25;
+              font-weight: 500;
+              margin-bottom: .25em;      
+            }
+        }
+        .modal-foot {
+            padding: .75em 0;
+            width: 100%;
+            h3 {
+                font-size: 1.5em;
+                margin: .5em 0;
+            }
+            .deals-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                a {
+                    text-decoration: none;
+                    color: $secondary-color;
+                }
+                img {
+                    margin-right: .25em;
+                }
+                li {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    height: 3em;
+                    padding: .25em .5em;
+                    border: 2px solid $theme-color;
+                    background: rgba($primary-color, 1);
+                }
+            }
+        }
+    }
+}

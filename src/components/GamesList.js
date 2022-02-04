@@ -3,10 +3,10 @@ import GamesListItem from "./GamesListItem.js";
 import GameModal from "./GameModal.js";
 import useGetGames from "../hooks/useGetGames.js";
 
-export default function GamesList(options) {
+export default function GamesList({options, stores}) {
   const [pageNumber, setPageNumber] = useState(0);
   const [query, setQuery] = useState(null);
-  const [noScroll, setNoScroll] = useState(false);
+  const [noScroll, setNoScroll] = useState(true);
   const [selectedGame, setSelectedGame] = useState(null);
   const { loading, games, error } = useGetGames(options, query, pageNumber);
 
@@ -40,7 +40,7 @@ export default function GamesList(options) {
         placeholder="search for a game"
       ></input>
       {games.map((game, index) => {
-        if (index === games.length - 1) {
+        if (index === games.length - 12) {
           return (
             <div ref={handleObservation}>
 
@@ -51,8 +51,7 @@ export default function GamesList(options) {
         return <GamesListItem key={game.title} game={game} setSelected={setSelectedGame}/>;
       })}
       <h1>{loading && "Loading..."}</h1>
-      <h1>{error && "Error"}</h1>
-      <GameModal game={selectedGame} />
+      <GameModal game={selectedGame} stores={stores} setSelected={setSelectedGame}/>
     </div>
   );
 }

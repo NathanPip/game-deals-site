@@ -26,15 +26,14 @@ export default function useGetGames(options, query, pageNumber) {
     let controller = new AbortController();
     setLoading(true);
     setError(null);
-    if (hasMore) {
+    if (hasMore && options) {
       axios({
         method: "GET",
         url: "https://www.cheapshark.com/api/1.0/deals",
-        params: { ...options.options, title: query, pageNumber: pageNumber },
+        params: { ...options, title: query, pageNumber: pageNumber },
         signal: controller.signal
       })
         .then(res => {
-          console.log(res.headers["x-total-page-count"]);
           if (pageNumber >= res.headers["x-total-page-count"]) {
             setHasMore(false);
           } else {

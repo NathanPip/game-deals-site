@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import useGetStoreData from "../hooks/useGetStoreData.js";
 
-export default function OptionsMenu({ setOptions }) {
+export default function OptionsMenu({ setOptions, setAllStores }) {
   const [priceRange] = useState([0, 61]);
   const [savingsRange] = useState([0, 100]);
   const [currentPrice, setCurrentPrice] = useState(priceRange[1]);
@@ -19,9 +19,13 @@ export default function OptionsMenu({ setOptions }) {
     const timeout = setTimeout(() => {
       setOptions(options);
     }, 500);
-    console.log(options);
+    // console.log(options);
     return () => clearTimeout(timeout);
   }, [options]);
+
+  useEffect( () => {
+    setAllStores(stores)
+  }, [stores])
 
   const handlePriceChange = e => {
     setCurrentPrice(e.target.value);

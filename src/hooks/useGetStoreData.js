@@ -25,7 +25,6 @@ export default function useGetStoreData() {
             signal: controller.signal
         }).then(res => {
             setStores(filterActive(res.data));
-            console.log(res);
             setLoading(false);
         }).catch( err => {
             setLoading(false);
