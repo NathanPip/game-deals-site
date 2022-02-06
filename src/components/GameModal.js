@@ -55,7 +55,10 @@ export default function GameModal({ game, stores, setSelected }) {
     return mainContent.deals.map(deal => {
       let currentStore = stores.filter(store => store.storeID === deal.storeID);
       return (
-        <a key={deal.storeID} href={`https://www.cheapshark.com/redirect?dealID=${deal.dealID}`}>
+        <a
+          key={deal.storeID}
+          href={`https://www.cheapshark.com/redirect?dealID=${deal.dealID}`}
+        >
           <li key={currentStore[0].storeName} className="deal-item">
             <p>
               <img
@@ -109,12 +112,13 @@ export default function GameModal({ game, stores, setSelected }) {
                     {`${extraContent.steamRatingText} (${extraContent.steamRatingCount})`}
                   </p>
                 )}
-                <p className="metacritic">
-                  <strong>Metacritic Score: </strong>
-                  {mainContent.metacriticScore != 0
-                    ? `${mainContent.metacriticScore}`
-                    : null}
-                </p>
+                {mainContent.metacriticScore != 0 && (
+                  <p className="metacritic">
+                    <strong>
+                      Metacritic Score: {mainContent.metacriticScore}
+                    </strong>
+                  </p>
+                )}
               </div>
               <p className="release-date">
                 <strong>release date:</strong> {mainContent.release}

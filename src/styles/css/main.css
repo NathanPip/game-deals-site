@@ -222,7 +222,7 @@ header .title {
   font-weight: 500;
 }
 .modal-bg .modal-card .close-btn {
-  align-self: end;
+  margin-left: auto;
   background: transparent;
   color: #eee;
   font-size: 2.5em;
