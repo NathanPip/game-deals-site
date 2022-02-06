@@ -5,7 +5,7 @@ import OptionsMenu from "./OptionsMenu";
 import useGetGames from "../hooks/useGetGames.js";
 
 export default function GamesList({}) {
-  //options and stores set by the options menu                                                                                                                                                                                                                                                                                                                                                                       
+  //options and stores set by the options menu
   const [options, setOptions] = useState(null);
   const [stores, setStores] = useState(null);
   //tracks pagination
@@ -37,8 +37,31 @@ export default function GamesList({}) {
   );
   //handles search query
   const handleSearch = e => {
-    setQuery(e.target.value != '' ? e.target.value: null);
+    setQuery(e.target.value != "" ? e.target.value : null);
     setPageNumber(0);
+  };
+
+  const displayGames = () => {
+    return games.map((game, index) => {
+      if (index === games.length - 12) {
+        return (
+          <div key={game.gameID} ref={handleObservation}>
+            <GamesListItem
+              key={game.title}
+              game={game}
+              setSelected={setSelectedGame}
+            />
+          </div>
+        );
+      }
+      return (
+        <GamesListItem
+          key={game.title}
+          game={game}
+          setSelected={setSelectedGame}
+        />
+      );
+    });
   };
 
   return (
@@ -52,26 +75,7 @@ export default function GamesList({}) {
         ></input>
         <OptionsMenu setOptions={setOptions} setAllStores={setStores} />
       </div>
-      {games.map((game, index) => {
-        if (index === games.length - 12) {
-          return (
-            <div ref={handleObservation}>
-              <GamesListItem
-                key={game.title}
-                game={game}
-                setSelected={setSelectedGame}
-              />
-            </div>
-          );
-        }
-        return (
-          <GamesListItem
-            key={game.title}
-            game={game}
-            setSelected={setSelectedGame}
-          />
-        );
-      })}
+      {displayGames()}
       <h1>{loading && "Loading..."}</h1>
       <GameModal
         game={selectedGame}

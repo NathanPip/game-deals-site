@@ -26,6 +26,7 @@
         &.hide-button {
             margin: .5em;
             font-size: 1em;
+            border-radius: .35em;
         }
         &:hover {
             cursor: pointer;
@@ -42,7 +43,6 @@
         font-weight: 400;
         padding: .25em .45em;
         border: none;
-        // outline: 2px solid $theme-color;
         outline: none;
         background-color: $primary-color-light;
         color: $secondary-color;

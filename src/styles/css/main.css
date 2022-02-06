@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;1,300;1,400&display=swap");
 body {
   font-family: "Poppins", sans-serif;
+  line-height: 1.25;
   background: #161616;
   color: #eee;
 }
@@ -50,6 +51,7 @@ h1, h2, h3, h4, h5 {
 .games-list .filter-button.hide-button {
   margin: 0.5em;
   font-size: 1em;
+  border-radius: 0.35em;
 }
 .games-list .filter-button:hover {
   cursor: pointer;
@@ -136,6 +138,7 @@ header {
   justify-content: center;
   align-items: center;
   height: 10em;
+  margin-top: 2em;
 }
 header .title {
   font-size: 3em;
@@ -200,11 +203,9 @@ header .title {
   overflow: scroll;
   font-size: 1.15em;
   font-weight: 400;
-  line-height: 1.25;
   background-color: rgba(111, 45, 189, 0.95);
   display: flex;
   justify-content: center;
-  z-index: 2;
 }
 .modal-bg .modal-card {
   display: flex;
@@ -224,12 +225,12 @@ header .title {
   align-self: end;
   background: transparent;
   color: #eee;
-  font-size: 1.5em;
+  font-size: 2.5em;
   border: none;
-  margin: 0 0.5em;
 }
 .modal-bg .modal-card .close-btn:hover {
   cursor: pointer;
+  color: #ddd;
 }
 .modal-bg .modal-card .modal-head {
   display: flex;
@@ -240,6 +241,7 @@ header .title {
   margin: 0.5em 0;
   font-size: 2em;
   font-weight: 600;
+  text-align: center;
 }
 .modal-bg .modal-card .video {
   align-self: center;
@@ -259,7 +261,7 @@ header .title {
   justify-content: space-between;
 }
 .modal-bg .modal-card .modal-main .release-date {
-  margin-top: 0.5em;
+  margin: 1em 0;
   font-size: 0.85em;
 }
 .modal-bg .modal-card .modal-main .desc {
@@ -267,7 +269,7 @@ header .title {
 }
 .modal-bg .modal-card .modal-main .desc-title {
   display: block;
-  font-size: 1.25;
+  font-size: 1.25em;
   font-weight: 500;
   margin-bottom: 0.25em;
 }

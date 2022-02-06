@@ -24,7 +24,7 @@ export default function OptionsMenu({ setOptions, setAllStores }) {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setOptions(options);
-    }, 500);
+    }, 300);
     // console.log(options);
     return () => clearTimeout(timeout);
   }, [options]);
@@ -38,7 +38,7 @@ export default function OptionsMenu({ setOptions, setAllStores }) {
     setCurrentPrice(e.target.value);
     setCurrentOptions(prevOptions => ({
       ...prevOptions,
-      upperPrice: currentPrice >= priceRange[1] - 1 ? null : currentPrice
+      upperPrice: e.target.value >= priceRange[1] - 1 ? null : e.target.value
     }));
   };
   //handles when the review slider is changed
@@ -46,7 +46,7 @@ export default function OptionsMenu({ setOptions, setAllStores }) {
     setCurrentSavings(e.target.value);
     setCurrentOptions(prevOptions => ({
       ...prevOptions,
-      steamRating: currentSavings <= 2 ? null : currentSavings
+      steamRating: e.target.value <= 2 ? null : e.target.value
     }));
   };
 //handles when the store select menu has a new value selected

@@ -1,4 +1,3 @@
-import './App.css';
 import Main from './components/Header.js'
 import Header from './components/Main.js'
 
