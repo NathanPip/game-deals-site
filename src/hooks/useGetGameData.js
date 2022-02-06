@@ -52,7 +52,8 @@ export default function useGetGameData(game) {
             if (!gameLoading) setLoading(false);
           })
           .catch(err => {
-            console.log(err);
+            // console.log(err);
+            setHasExtras(false);
             setError(err);
             setSteamLoading(false);
             if (!gameLoading) setLoading(false);
