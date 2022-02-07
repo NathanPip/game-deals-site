@@ -12,6 +12,10 @@ Fully responsive across all browsers and devices
 A list of all the best video games currently available that can be filtered by price, steam review rating, or store type
 Search for any game and view all currently available deals for that game, a release date and metacritic reviews for the game are also displyed (a trailer as well as description for steam games will be displayed once I configure api calls from steam to satisfy cors)
 
+### Upcoming
+I plan to add the steam data back once I get a proxy server up and running
+I also plan on adding more filter options as well as a wishlist system in the near future
+
 ## Technologies
 ReactJS
 Sass
