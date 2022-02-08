@@ -91,10 +91,11 @@ export default function GameModal({ game, stores, setSelected }) {
                 <video
                   className="video"
                   poster={extraContent.thumbnail}
+                  name="media"
                   controls
                 >
-                  <source src={extraContent.mainVideo} />
-                  <source src={extraContent.backupVideo} />
+                  <source src={extraContent.mainVideo} type="video/mp4"/>
+                  <source src={extraContent.backupVideo} type="video/webm"/>
                   )}
                 </video>
               )}
@@ -117,6 +118,7 @@ export default function GameModal({ game, stores, setSelected }) {
                     <strong>
                       Metacritic Score: {mainContent.metacriticScore}
                     </strong>
+                    
                   </p>
                 )}
               </div>
