@@ -92,6 +92,7 @@ export default function GameModal({ game, stores, setSelected }) {
                   className="video"
                   poster={extraContent.thumbnail}
                   name="media"
+                  autoplay
                   controls
                 >
                   <source src={extraContent.mainVideo} type="video/mp4"/>

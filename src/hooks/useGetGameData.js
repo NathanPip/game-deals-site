@@ -35,10 +35,11 @@ export default function useGetGameData(game) {
             return data[game.steamAppID];
           })
           .then(details => {
-            setData(prev => ({
-              ...prev,
-              desc: details.data.short_description
-            }));
+            if(details.data.short_description)
+              setData(prev => ({
+                ...prev,
+                desc: details.data.short_description
+              }));
             setData(prev => ({
               ...prev,
               thumbnail: details.data.header_image
