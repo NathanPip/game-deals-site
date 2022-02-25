@@ -22,8 +22,6 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../public', 'index.html'));
 });
 
-app.set("port", process.env.PORT || 3212);
-
-app.listen(app.get("port"), () => {
+app.listen(process.env.PORT, () => {
   console.log(`listening on port ${app.get("port")}`);
 });
