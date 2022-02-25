@@ -79,8 +79,27 @@ export default function GamesList() {
         ></input>
         <OptionsMenu setOptions={setOptions} setAllStores={setStores} />
       </div>
-      <button className={`btn ${isGrid ? 'isGrid' : ''}`} onClick={()=>setIsGrid(prev=>!prev)}>grid</button>
-      <div className={`games ${isGrid ? 'grid' : ''}`}>
+      <div className="layout-btn-group">
+        <button
+          className={`btn ${isGrid ? "" : "isGrid"}`}
+          onClick={() => setIsGrid(false)}
+        >
+          <img
+            src="https://img.icons8.com/material-outlined/96/000000/list.png"
+            alt="list icon"
+          />
+        </button>
+        <button
+          className={`btn ${isGrid ? "isGrid" : ""}`}
+          onClick={() => setIsGrid(true)}
+        >
+          <img
+            src="https://img.icons8.com/material-outlined/48/000000/activity-grid-2.png"
+            alt="grid icon"
+          />
+        </button>
+      </div>
+      <div className={`games ${isGrid ? "grid" : ""}`}>
         {displayGames()}
         <h1>{loading && "Loading..."}</h1>
       </div>

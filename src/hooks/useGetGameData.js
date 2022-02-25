@@ -63,7 +63,7 @@ export default function useGetGameData(game) {
       }
     }
     return () => controller.abort();
-  }, [game, gameLoading]);
+  }, [game]);
   //fetches all the store price data for game
   useEffect(() => {
     let controller = new AbortController();
@@ -97,7 +97,7 @@ export default function useGetGameData(game) {
         });
     }
     return () => controller.abort();
-  }, [game, steamLoading]);
+  }, [game]);
 
   return { data, loading, error, hasExtras };
 }

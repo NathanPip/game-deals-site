@@ -18,7 +18,8 @@ export default function OptionsMenu({ setOptions, setAllStores }) {
   const [options, setCurrentOptions] = useState({
     upperPrice: currentPrice === priceRange[1] ? null : currentPrice,
     steamRating: currentSavings,
-    storeID: currentStore
+    storeID: currentStore,
+    metacritic: 1
   });
   //when options are updated a timeout is set before they are applied to prevent rapid fire api calls
   useEffect(() => {
@@ -38,7 +39,7 @@ export default function OptionsMenu({ setOptions, setAllStores }) {
     setCurrentPrice(e.target.value);
     setCurrentOptions(prevOptions => ({
       ...prevOptions,
-      upperPrice: e.target.value >= priceRange[1] - 1 ? null : e.target.value
+      upperPrice: parseInt(e.target.value) >= priceRange[1] - 1 ? null : e.target.value
     }));
   };
   //handles when the review slider is changed
@@ -46,7 +47,7 @@ export default function OptionsMenu({ setOptions, setAllStores }) {
     setCurrentSavings(e.target.value);
     setCurrentOptions(prevOptions => ({
       ...prevOptions,
-      steamRating: e.target.value <= 2 ? null : e.target.value
+      steamRating: parseInt(e.target.value) <= 2 ? null : e.target.value
     }));
   };
   //handles when the store select menu has a new value selected

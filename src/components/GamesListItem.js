@@ -5,24 +5,23 @@ export default function GamesListItem({ game, setSelected, isCard }) {
   if (isCard) {
     return (
       <div className="list-item card" onClick={() => setSelected(game)}>
-        <div className="item-head card">
+        <div className="item-head">
           <img
-            className="item-img card"
+            className="item-img"
             src={game.thumb}
             alt={`${game.title} cover`}
           />
-          <h3 className="item-title card">{game.title}</h3>
+          <h3 className="item-title">{game.title}</h3>
         </div>
-        <div className="item-middle card"></div>
-        <div className="item-foot card">
-            <p>Original Price: <br />
-            {Math.round(game.savings) !== 0 && game.normalPrice}
+        <div className="item-foot">
+            <p className="item-original">Original Price: 
+            {Math.round(game.savings) !== 0 && ` $${game.normalPrice}`}
             </p>
-          <p className="item-price card">
-            {game.salePrice !== "0.00" ? `$${game.salePrice}` : "Free"}
+          <p className="item-price">
+            {game.salePrice !== "0.00" ? `Sale Price: $${game.salePrice}` : "Sale Price: FREE"}
           </p>
           {Math.round(game.savings) !== 0 && (
-            <p className="item-savings card">{Math.round(game.savings)}%</p>
+            <p className="item-savings">Savings: {Math.round(game.savings)}%</p>
           )}
         </div>
       </div>
@@ -40,7 +39,6 @@ export default function GamesListItem({ game, setSelected, isCard }) {
           />
           <h3 className="item-title">{game.title}</h3>
         </div>
-        <div className="item-middle"></div>
         <div className="item-foot">
           <p className="item-price">
             {Math.round(game.savings) !== 0 && (

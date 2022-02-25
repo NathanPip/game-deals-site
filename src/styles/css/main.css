@@ -39,13 +39,22 @@ h1, h2, h3, h4, h5 {
   justify-content: center;
   width: 100%;
 }
+.games-list .layout-btn-group {
+  margin-left: auto;
+}
 .games-list .btn {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 0.25em;
+  border: none;
+  padding: 0.15em;
   background: #5a5a5a;
   color: #eee;
-  padding: 0.1em 0.75em;
-  border: 2px solid #8032d8;
-  border-radius: 0.25em;
-  margin-left: auto;
+  margin-left: 0.25em;
+}
+.games-list .btn img {
+  width: 100%;
+  height: 100%;
 }
 .games-list .btn.isGrid {
   background-color: #8032d8;
@@ -91,11 +100,13 @@ h1, h2, h3, h4, h5 {
 .games-list .search-input:focus {
   outline: 1px solid #6f2dbd;
 }
+.games-list .games {
+  width: 100%;
+}
 .games-list .games.grid {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   flex-wrap: wrap;
-  gap: 0.5em;
 }
 @media (min-width: 600px) {
   .games-list .search-input {
@@ -109,7 +120,7 @@ h1, h2, h3, h4, h5 {
   max-width: 100%;
   padding: 0.5em;
   border: 2px solid #6f2dbd;
-  margin: 0.25em 0;
+  margin: 0.25em auto;
   font-size: 0.85em;
   background: #161616;
   color: #eee;
@@ -151,28 +162,52 @@ h1, h2, h3, h4, h5 {
 }
 .list-item.card {
   flex-direction: column;
-  width: 300px;
+  width: 19em;
+  padding: 0;
+  min-height: 20em;
 }
 .list-item.card .item-head {
   flex-direction: column;
+  justify-content: flex-start;
   text-align: center;
-}
-.list-item.card .item-img {
-  height: 10em;
-  max-width: 90%;
+  border-bottom: 2px solid #6f2dbd;
+  height: 60%;
+  padding: 0.5em;
 }
 .list-item.card .item-foot {
   flex-direction: column;
   justify-content: center;
   margin: 0;
+  padding-bottom: 1em;
+}
+.list-item.card .item-title {
+  margin-top: 0.5em;
+  font-size: 1.25em;
+  width: 100%;
+}
+.list-item.card .item-img {
+  width: 100%;
+  margin: 0;
+  height: auto;
+  max-height: 112px;
 }
 .list-item.card .item-savings {
+  padding: 0.15em;
+  font-size: 1.15em;
   margin: 0;
 }
+.list-item.card .item-original {
+  margin: 1em 0 0.25em 0;
+}
 .list-item.card .item-price {
-  font-size: 1.5em;
-  font-weight: 500;
+  font-weight: 400;
+  margin: 0;
+  margin-bottom: 0.5em;
   display: flex;
+  align-items: center;
+}
+.list-item.card:hover {
+  background: rgba(111, 45, 189, 0.2);
 }
 
 .main {
@@ -271,14 +306,19 @@ header .title {
 }
 .modal-bg .modal-card .close-btn {
   margin-left: auto;
+  margin-top: 1em;
   background: transparent;
   color: #eee;
-  font-size: 2.5em;
+  font-size: 1.5em;
+  background: rgba(22, 22, 22, 0.25);
+  transition: 0.25s ease-in-out background;
   border: none;
+  border-radius: 0.5em;
+  padding: 0.15em 0.25em;
 }
 .modal-bg .modal-card .close-btn:hover {
   cursor: pointer;
-  color: #ddd;
+  background: rgba(22, 22, 22, 0.8);
 }
 .modal-bg .modal-card .modal-head {
   display: flex;

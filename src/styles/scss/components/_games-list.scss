@@ -15,13 +15,22 @@
         justify-content: center;
         width: 100%;
     }
-    .btn {
-        background: $primary-color-light;
-        color: $secondary-color;
-        padding: .1em .75em;
-        border: 2px solid $theme-color-light;
-        border-radius: .25em;
+    .layout-btn-group {
         margin-left: auto;
+    }
+    .btn {
+        width: 1.5em;
+        height: 1.5em;
+        border-radius: .25em;
+        border: none;
+        padding: .15em;
+        background: $primary-color-light ;
+        color: $secondary-color;
+        margin-left: .25em;
+        img {
+            width: 100%;
+            height: 100%;
+        }
         &.isGrid {
             background-color: $theme-color-light;
         }
@@ -68,11 +77,11 @@
         }
     }
     .games {
+        width: 100%;
         &.grid {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             flex-wrap: wrap;
-            gap: .5em;
         }
     }
     @include m.breakpoint($medium) {
