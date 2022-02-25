@@ -1,11 +1,11 @@
-import Main from './components/Header.js'
-import Header from './components/Main.js'
+import Header from './components/Header.js'
+import GamesList from './components/GamesList.js'
 
 function App() {
   return (
     <div className="container">
-      <Main />
       <Header />
+      <GamesList />
     </div>
   );
 }

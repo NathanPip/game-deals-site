@@ -48,4 +48,29 @@
         cursor: pointer;
         background: $primary-color-medium;
     }
+    &.card {
+        flex-direction: column;
+        width: 300px;
+        .item-head  {
+            flex-direction: column;
+            text-align: center;
+        }
+        .item-img {
+            height: 10em;
+            max-width: 90%;
+        }
+        .item-foot {
+            flex-direction: column;
+            justify-content: center;
+            margin: 0;
+        }
+        .item-savings {
+            margin: 0;
+        }
+        .item-price {
+            font-size: 1.5em;
+            font-weight: 500;
+            display: flex;
+        }
+    }
 }

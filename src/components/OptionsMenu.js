@@ -33,7 +33,7 @@ export default function OptionsMenu({ setOptions, setAllStores }) {
   useEffect(() => {
     setAllStores(stores);
   }, [stores, setAllStores]);
-//handles when the price slider is changed
+  //handles when the price slider is changed
   const handlePriceChange = e => {
     setCurrentPrice(e.target.value);
     setCurrentOptions(prevOptions => ({
@@ -49,19 +49,19 @@ export default function OptionsMenu({ setOptions, setAllStores }) {
       steamRating: e.target.value <= 2 ? null : e.target.value
     }));
   };
-//handles when the store select menu has a new value selected
+  //handles when the store select menu has a new value selected
   const handleStoreSelect = e => {
-    setCurrentStore(e.target.value);
-    setCurrentOptions(prevOptions => ({
-      ...prevOptions,
-      storeID: e.target.value === 0 ? null : e.target.value
-    }));
+      setCurrentStore(e.target.value);
+      setCurrentOptions(prevOptions => ({
+        ...prevOptions,
+        storeID: e.target.value === '0' ? null : e.target.value
+      }));
   };
-//toggles hiding
+  //toggles hiding
   const toggleHide = () => {
     setHiding(prev => !prev);
   };
-//if options are hiding then display show button
+  //if options are hiding then display show button
   if (hiding) {
     return (
       <button className="filter-button" onClick={toggleHide}>
@@ -69,7 +69,7 @@ export default function OptionsMenu({ setOptions, setAllStores }) {
       </button>
     );
   }
-//if not hiding then display filter options
+  //if not hiding then display filter options
   return (
     <div className="options-menu">
       <div className="options-item">
@@ -77,10 +77,10 @@ export default function OptionsMenu({ setOptions, setAllStores }) {
         <select
           name="store-select"
           id="store-select"
-          value={currentStore}
+          value={undefined}
           onChange={handleStoreSelect}
         >
-          <option value={0}> select a store</option>
+          <option value={0}>select a store</option>
           {!loading &&
             !error &&
             stores.map(store => {
@@ -96,9 +96,7 @@ export default function OptionsMenu({ setOptions, setAllStores }) {
       <div className="options-item">
         <label htmlFor="price-range">
           Price:{" "}
-          {currentPrice >= priceRange[1]-1
-            ? `Any`
-            : `$${currentPrice}`}
+          {currentPrice >= priceRange[1] - 1 ? `Any` : `$${currentPrice}`}
         </label>
         <div className="range-values">
           <span className="range-minmax">${priceRange[0]}</span>
@@ -121,7 +119,9 @@ export default function OptionsMenu({ setOptions, setAllStores }) {
       </div>
 
       <div className="options-item">
-        <label htmlFor="savings-range">Steam Reviews: {currentSavings <= 5 ? 'Any' : `${currentSavings}%`}</label>
+        <label htmlFor="savings-range">
+          Steam Reviews: {currentSavings <= 5 ? "Any" : `${currentSavings}%`}
+        </label>
         <div className="range-values">
           <span className="range-minmax">{savingsRange[0]}%</span>
           <input
