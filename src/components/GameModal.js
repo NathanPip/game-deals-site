@@ -8,7 +8,7 @@ const timeConverter = time => {
 };
 
 export default function GameModal({ game, stores, setSelected }) {
-  const { data, loading, error, hasExtras } = useGetGameData(game);
+  const { data, loading, hasExtras } = useGetGameData(game);
   const [mainContent, setMainContent] = useState(null);
   const [extraContent, setExtraContent] = useState(null);
   const [isShown, setIsShown] = useState(false);
@@ -42,7 +42,7 @@ export default function GameModal({ game, stores, setSelected }) {
         });
       }
     }
-  }, [data, loading, game]);
+  }, [data, loading, game, hasExtras]);
 
   //closes modal and sets the current selected game to null
   const closeModal = () => {
@@ -63,6 +63,7 @@ export default function GameModal({ game, stores, setSelected }) {
             <p>
               <img
                 src={`https://www.cheapshark.com${currentStore[0].images.icon}`}
+                alt={currentStore[0].storeName}
               />{" "}
               {currentStore[0].storeName}
             </p>
@@ -86,7 +87,7 @@ export default function GameModal({ game, stores, setSelected }) {
             {/* contains the title and video / thumbnail of game */}
             <div className="modal-head">
               <h2 className="title">{mainContent.title}</h2>
-              {!hasExtras && <img className="image" src={mainContent.image} />}
+              {!hasExtras && <img className="image" src={mainContent.image} alt={`${mainContent.title} cover`}/>}
               {hasExtras && (
                 <video
                   className="video"
@@ -114,7 +115,7 @@ export default function GameModal({ game, stores, setSelected }) {
                     {`${extraContent.steamRatingText} (${extraContent.steamRatingCount})`}
                   </p>
                 )}
-                {mainContent.metacriticScore != 0 && (
+                {mainContent.metacriticScore !== 0 && (
                   <p className="metacritic">
                     <strong>
                       Metacritic Score: {mainContent.metacriticScore}

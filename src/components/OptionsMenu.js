@@ -16,7 +16,7 @@ export default function OptionsMenu({ setOptions, setAllStores }) {
   const { loading, stores, error } = useGetStoreData();
   //sets options which will be passed as a parameter to the getGames hook
   const [options, setCurrentOptions] = useState({
-    upperPrice: currentPrice == priceRange[1] ? null : currentPrice,
+    upperPrice: currentPrice === priceRange[1] ? null : currentPrice,
     steamRating: currentSavings,
     storeID: currentStore
   });
@@ -27,12 +27,12 @@ export default function OptionsMenu({ setOptions, setAllStores }) {
     }, 300);
     // console.log(options);
     return () => clearTimeout(timeout);
-  }, [options]);
+  }, [options, setOptions]);
 
   //sets store values in gameslist when store data is resolved
   useEffect(() => {
     setAllStores(stores);
-  }, [stores]);
+  }, [stores, setAllStores]);
 //handles when the price slider is changed
   const handlePriceChange = e => {
     setCurrentPrice(e.target.value);
@@ -54,7 +54,7 @@ export default function OptionsMenu({ setOptions, setAllStores }) {
     setCurrentStore(e.target.value);
     setCurrentOptions(prevOptions => ({
       ...prevOptions,
-      storeID: e.target.value == 0 ? null : e.target.value
+      storeID: e.target.value === 0 ? null : e.target.value
     }));
   };
 //toggles hiding
@@ -113,7 +113,7 @@ export default function OptionsMenu({ setOptions, setAllStores }) {
             onChange={handlePriceChange}
           ></input>
           <span className="range-minmax">
-            {currentPrice == priceRange[1]
+            {currentPrice === priceRange[1]
               ? `<$${priceRange[1] - 1}`
               : `$${currentPrice}`}
           </span>

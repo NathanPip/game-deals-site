@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 //filters games based on title so duplicates do not show up
@@ -48,7 +48,7 @@ export default function useGetGames(options, query, pageNumber) {
           setLoading(false);
         })
         .catch(err => {
-          if (err.message != "canceled") {
+          if (err.message !== "canceled") {
             setLoading(false);
             setError(err);
             console.log(err);
@@ -56,7 +56,7 @@ export default function useGetGames(options, query, pageNumber) {
         });
     }
     return () => controller.abort();
-  }, [options, query, pageNumber]);
+  }, [options, query, pageNumber, hasMore]);
 
   return { loading, games, error };
 }

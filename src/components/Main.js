@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import GamesList from "./GamesList";
 
 export default function Main() {

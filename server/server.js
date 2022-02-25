@@ -3,7 +3,7 @@ const axios = require("axios");
 const path = require('path');
 const app = express();
 
-app.use(express.static(path.resolve(__dirname, '../build')));
+app.use(express.static(path.resolve(__dirname, '../public')));
 
 app.get("/steamData", (req, res) => {
   const steamID = req.query.steamID;
@@ -19,7 +19,7 @@ app.get("/steamData", (req, res) => {
 });
 
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../build', 'index.html'));
+  res.sendFile(path.resolve(__dirname, '../public', 'index.html'));
 });
 
 app.set("port", process.env.PORT || 3212);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 //fetches data for specific game from cheapshark as well as steam api 
@@ -63,7 +63,7 @@ export default function useGetGameData(game) {
       }
     }
     return () => controller.abort();
-  }, [game]);
+  }, [game, gameLoading]);
   //fetches all the store price data for game
   useEffect(() => {
     let controller = new AbortController();
@@ -97,7 +97,7 @@ export default function useGetGameData(game) {
         });
     }
     return () => controller.abort();
-  }, [game]);
+  }, [game, steamLoading]);
 
   return { data, loading, error, hasExtras };
 }

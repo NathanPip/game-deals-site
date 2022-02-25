@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import GamesListItem from "./GamesListItem.js";
 import GameModal from "./GameModal.js";
 import OptionsMenu from "./OptionsMenu";
 import useGetGames from "../hooks/useGetGames.js";
 
-export default function GamesList({}) {
+export default function GamesList() {
   //options and stores set by the options menu
   const [options, setOptions] = useState(null);
   const [stores, setStores] = useState(null);
@@ -17,7 +17,7 @@ export default function GamesList({}) {
   //the game taht will be displayed in the modal
   const [selectedGame, setSelectedGame] = useState(null);
   //call returns game deals based on options and query, returns deals sorted by deal rating by default
-  const { loading, games, error } = useGetGames(options, query, pageNumber);
+  const { loading, games } = useGetGames(options, query, pageNumber);
 
   //handles the observation to signal when to fire another api call for another page
   //currently set to view a specific list item and fire when that list item is visible
@@ -33,11 +33,11 @@ export default function GamesList({}) {
       });
       if (node) observer.current.observe(node);
     },
-    [loading]
+    [loading, noScroll]
   );
   //handles search query
   const handleSearch = e => {
-    setQuery(e.target.value != "" ? e.target.value : null);
+    setQuery(e.target.value !== "" ? e.target.value : null);
     setPageNumber(0);
   };
 

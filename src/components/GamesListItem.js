@@ -5,7 +5,7 @@ export default function GamesListItem({ game, setSelected }) {
   return (
     <div className="list-item" onClick={() => setSelected(game)}>
       <div className="item-head">
-        <img className="item-img" src={game.thumb} />
+        <img className="item-img" src={game.thumb} alt={`${game.title} cover`}/>
         <h3 className="item-title">{game.title}</h3>
       </div>
       <div className="item-middle"></div>
