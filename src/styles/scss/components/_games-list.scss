@@ -70,10 +70,11 @@
         padding: .25em .45em;
         border: none;
         outline: none;
-        background-color: $primary-color-light;
+        background-color: $primary-color-medium;
         color: $secondary-color;
-        &:focus {
-            outline: 1px solid $theme-color;
+        transition: .2s ease-in-out background-color;
+        &:focus, &:hover {
+        background-color: $primary-color-light;
         }
     }
     .games {

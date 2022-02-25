@@ -52,6 +52,8 @@
     width: 19em;
     padding: 0;
     min-height: 20em;
+    border: 5px solid $theme-color;
+    border-radius: .5em;
     .item-head {
       flex-direction: column;
       justify-content: flex-start;

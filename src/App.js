@@ -6,6 +6,7 @@ function App() {
     <div className="container">
       <Header />
       <GamesList />
+      <div className="footer"></div>
     </div>
   );
 }

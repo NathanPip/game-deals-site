@@ -21,6 +21,19 @@ h1, h2, h3, h4, h5 {
   font-weight: 500;
 }
 
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer {
+  height: 4em;
+  width: 100%;
+  border-top: 2px solid #6f2dbd;
+  margin-top: auto;
+}
+
 .hide {
   display: none;
 }
@@ -94,11 +107,12 @@ h1, h2, h3, h4, h5 {
   padding: 0.25em 0.45em;
   border: none;
   outline: none;
-  background-color: #5a5a5a;
+  background-color: #353535;
   color: #eee;
+  transition: 0.2s ease-in-out background-color;
 }
-.games-list .search-input:focus {
-  outline: 1px solid #6f2dbd;
+.games-list .search-input:focus, .games-list .search-input:hover {
+  background-color: #5a5a5a;
 }
 .games-list .games {
   width: 100%;
@@ -165,6 +179,8 @@ h1, h2, h3, h4, h5 {
   width: 19em;
   padding: 0;
   min-height: 20em;
+  border: 5px solid #6f2dbd;
+  border-radius: 0.5em;
 }
 .list-item.card .item-head {
   flex-direction: column;
@@ -210,18 +226,12 @@ h1, h2, h3, h4, h5 {
   background: rgba(111, 45, 189, 0.2);
 }
 
-.main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 header {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 10em;
-  margin-top: 2em;
+  margin-top: 4em;
 }
 header .title {
   font-size: 3em;

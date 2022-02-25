@@ -20,6 +20,19 @@ h1, h2, h3, h4, h5 {
     font-weight: 500;
 }
 
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer {
+    height: 4em;
+    width: 100%;
+    border-top: 2px solid $theme-color;
+    margin-top: auto;
+}
+
 .hide {
     display: none;
 }
