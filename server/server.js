@@ -3,7 +3,7 @@ const axios = require("axios");
 const path = require('path');
 const app = express();
 
-app.use(express.static(path.resolve(__dirname, '../public')));
+app.use(express.static(path.resolve(__dirname, '../build')));
 
 app.get("/steamData", (req, res) => {
   const steamID = req.query.steamID;
@@ -15,13 +15,17 @@ app.get("/steamData", (req, res) => {
     url: `https://store.steampowered.com/api/appdetails?appids=${steamID}`
   }).then(response => {
     res.send(200, response.data);
-  });
+  }).catch( err => {
+    Error(err);
+    res.send(err);
+  }
+  );
 });
 
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../public', 'index.html'));
+  res.sendFile(path.resolve(__dirname, '../build', 'index.html'));
 });
 
 app.listen(process.env.PORT, () => {
-  console.log(`listening on port ${app.get("port")}`);
+  console.log(`listening on port ${process.env.PORT}`);
 });
