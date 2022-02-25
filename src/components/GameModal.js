@@ -82,7 +82,7 @@ export default function GameModal({ game, stores, setSelected }) {
         <div className="modal-bg">
           <div className="modal-card">
             <button className="close-btn" onClick={closeModal}>
-              X
+              Close X
             </button>
             {/* contains the title and video / thumbnail of game */}
             <div className="modal-head">

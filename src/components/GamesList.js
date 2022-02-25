@@ -14,6 +14,8 @@ export default function GamesList() {
   const [query, setQuery] = useState(null);
   //for testing when set to true infinite scroll is disabled
   const [noScroll] = useState(false);
+  //boolean for layout of games least either grid or list
+  const [isGrid, setIsGrid] = useState(false);
   //the game taht will be displayed in the modal
   const [selectedGame, setSelectedGame] = useState(null);
   //call returns game deals based on options and query, returns deals sorted by deal rating by default
@@ -49,6 +51,7 @@ export default function GamesList() {
             <GamesListItem
               key={game.title}
               game={game}
+              isCard={isGrid}
               setSelected={setSelectedGame}
             />
           </div>
@@ -58,6 +61,7 @@ export default function GamesList() {
         <GamesListItem
           key={game.title}
           game={game}
+          isCard={isGrid}
           setSelected={setSelectedGame}
         />
       );
@@ -75,8 +79,30 @@ export default function GamesList() {
         ></input>
         <OptionsMenu setOptions={setOptions} setAllStores={setStores} />
       </div>
-      {displayGames()}
-      <h1>{loading && "Loading..."}</h1>
+      <div className="layout-btn-group">
+        <button
+          className={`btn ${isGrid ? "" : "isGrid"}`}
+          onClick={() => setIsGrid(false)}
+        >
+          <img
+            src="https://img.icons8.com/material-outlined/96/000000/list.png"
+            alt="list icon"
+          />
+        </button>
+        <button
+          className={`btn ${isGrid ? "isGrid" : ""}`}
+          onClick={() => setIsGrid(true)}
+        >
+          <img
+            src="https://img.icons8.com/material-outlined/48/000000/activity-grid-2.png"
+            alt="grid icon"
+          />
+        </button>
+      </div>
+      <div className={`games ${isGrid ? "grid" : ""}`}>
+        {displayGames()}
+        <h1>{loading && "Loading..."}</h1>
+      </div>
       <GameModal
         game={selectedGame}
         stores={stores}

@@ -1,114 +1,119 @@
 @use "../abstracts/variables" as *;
 
 .modal-bg {
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    inset: 0;
-    overflow: scroll;
-    font-size: 1.15em;
-    font-weight: 400;
-    background-color: rgba($theme-color, .95);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  inset: 0;
+  overflow: scroll;
+  font-size: 1.15em;
+  font-weight: 400;
+  background-color: rgba($theme-color, 0.95);
+  display: flex;
+  justify-content: center;
+  .modal-card {
     display: flex;
-    justify-content: center;
-    .modal-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 1.5em;
-        width: 90%;
-        max-width: 1000px;
-        p {
-            margin: 0;
-        }
-        strong {
-            font-weight: 500;
-        }
-        .close-btn {
-            margin-left: auto;
-            background: transparent;
-            color: $secondary-color;
-            font-size: 2.5em;
-            border: none;
-            &:hover {
-                cursor: pointer;
-                color: $secondary-color-dark;
-            }
-        }
-        .modal-head {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-        }
-        .title {
-            margin: .5em 0 ;
-            font-size: 2em;
-            font-weight: 600;
-            text-align: center;
-        }
-        .video{
-            align-self: center;
-            width: 100%;
-            max-width: 1000px;
-        }
-        .image {
-            align-self: center;
-            min-width: 300px;
-        }
-        .modal-main {
-            padding: .75em 0;
-            .reviews {
-                font-size: .75em;
-                display: flex;
-                justify-content: space-between; 
-            }
-            .release-date {
-                margin: 1em 0;
-                font-size: .85em;
-            }
-            .desc {
-                margin: .5em 0;
-            }
-            .desc-title {
-              display: block;
-              font-size: 1.25em;
-              font-weight: 500;
-              margin-bottom: .25em;      
-            }
-        }
-        .modal-foot {
-            padding: .75em 0;
-            width: 100%;
-            h3 {
-                font-size: 1.5em;
-                margin: .5em 0;
-            }
-            .deals-list {
-                list-style: none;
-                padding: 0;
-                margin: 0;
-                margin-bottom: 5em;
-                a {
-                    text-decoration: none;
-                    color: $secondary-color;
-                }
-                img {
-                    margin-right: .25em;
-                }
-                li {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    height: 3em;
-                    padding: .25em .5em;
-                    border: 2px solid $theme-color;
-                    background: $primary-color;
-                    transition: .25s ease-in-out;
-                    &:hover {
-                        background: $primary-color-medium;
-                    }
-                }
-            }
-        }
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1.5em;
+    width: 90%;
+    max-width: 1000px;
+    p {
+      margin: 0;
     }
+    strong {
+      font-weight: 500;
+    }
+    .close-btn {
+      margin-left: auto;
+      margin-top: 1em;
+      background: transparent;
+      color: $secondary-color;
+      font-size: 1.5em;
+      background: rgba($primary-color, 0.25);
+      transition: .25s ease-in-out background;
+      border: none;
+      border-radius: .5em;
+      padding: .15em .25em;
+      &:hover {
+        cursor: pointer;
+        background: rgba($primary-color, 0.8);
+      }
+    }
+    .modal-head {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+    .title {
+      margin: 0.5em 0;
+      font-size: 2em;
+      font-weight: 600;
+      text-align: center;
+    }
+    .video {
+      align-self: center;
+      width: 100%;
+      max-width: 1000px;
+    }
+    .image {
+      align-self: center;
+      min-width: 300px;
+    }
+    .modal-main {
+      padding: 0.75em 0;
+      .reviews {
+        font-size: 0.75em;
+        display: flex;
+        justify-content: space-between;
+      }
+      .release-date {
+        margin: 1em 0;
+        font-size: 0.85em;
+      }
+      .desc {
+        margin: 0.5em 0;
+      }
+      .desc-title {
+        display: block;
+        font-size: 1.25em;
+        font-weight: 500;
+        margin-bottom: 0.25em;
+      }
+    }
+    .modal-foot {
+      padding: 0.75em 0;
+      width: 100%;
+      h3 {
+        font-size: 1.5em;
+        margin: 0.5em 0;
+      }
+      .deals-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        margin-bottom: 5em;
+        a {
+          text-decoration: none;
+          color: $secondary-color;
+        }
+        img {
+          margin-right: 0.25em;
+        }
+        li {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          height: 3em;
+          padding: 0.25em 0.5em;
+          border: 2px solid $theme-color;
+          background: $primary-color;
+          transition: 0.25s ease-in-out;
+          &:hover {
+            background: $primary-color-medium;
+          }
+        }
+      }
+    }
+  }
 }

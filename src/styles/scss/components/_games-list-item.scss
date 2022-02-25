@@ -1,51 +1,101 @@
 @use "../abstracts/variables" as *;
 
 .list-item {
+  display: flex;
+  justify-content: space-between;
+  max-width: 100%;
+  padding: 0.5em;
+  border: 2px solid $theme-color;
+  margin: 0.25em auto;
+  font-size: 0.85em;
+  background: $primary-color;
+  color: $secondary-color;
+  transition: 0.25s ease-in-out;
+  .item-head {
     display: flex;
     justify-content: space-between;
-    max-width: 100%;
-    padding: .5em;
-    border: 2px solid $theme-color;
-    margin: .25em 0;
-    font-size: .85em;
-    background: $primary-color;
-    color: $secondary-color;
-    transition: .25s ease-in-out;
+    align-items: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    // max-width: 70%;
+  }
+  .item-foot {
+    display: flex;
+    align-items: center;
+    margin: 0 0.75em;
+    .normal-price {
+      display: block;
+      font-size: 0.65em;
+      text-decoration: line-through;
+    }
+    .item-price {
+      font-size: 1.15em;
+      font-weight: 500;
+    }
+    .item-savings {
+      // font-weight: 400;
+      background: $theme-color;
+      padding: 0.35em;
+      margin-left: 0.5em;
+    }
+  }
+  .item-img {
+    height: 3.5em;
+    margin-right: 0.45em;
+  }
+  &:hover {
+    cursor: pointer;
+    background: $primary-color-medium;
+  }
+  &.card {
+    flex-direction: column;
+    width: 19em;
+    padding: 0;
+    min-height: 20em;
+    border: 3px solid $theme-color;
+    border-radius: .5em;
     .item-head {
-        
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        // max-width: 70%;
+      flex-direction: column;
+      justify-content: flex-start;
+      text-align: center;
+      border-bottom: 2px solid $theme-color;
+      height: 60%;
+      padding: 0.5em;
     }
     .item-foot {
-        display: flex;
-        align-items: center;
-        margin: 0 .75em;
-        .normal-price {
-            display: block;
-            font-size: .65em;
-            text-decoration: line-through;
-        }
-        .item-price {
-            font-size: 1.15em;
-            font-weight: 500;
-        }
-        .item-savings {
-            // font-weight: 400;
-            background: $theme-color;
-            padding: .35em;
-            margin-left: .5em;
-        }
+      flex-direction: column;
+      justify-content: center;
+      margin: 0;
+      padding-bottom: 1em;
+    }
+    .item-title {
+      margin-top: 0.5em;
+      font-size: 1.25em;
+      width: 100%;
     }
     .item-img {
-        height: 3.5em;
-        margin-right: .45em;
+      width: 100%;
+      margin: 0;
+      height: auto;
+      max-height: 112px;
+    }
+    .item-savings {
+      padding: 0.15em;
+      font-size: 1.15em;
+      margin: 0;
+    }
+    .item-original {
+      margin: 1em 0 0.25em 0;
+    }
+    .item-price {
+      font-weight: 400;
+      margin: 0;
+      margin-bottom: 0.5em;
+      display: flex;
+      align-items: center;
     }
     &:hover {
-        cursor: pointer;
-        background: $primary-color-medium;
+      background: rgba($theme-color, 0.2);
     }
+  }
 }

@@ -15,12 +15,15 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+<<<<<<< HEAD
     "start": "react-scripts start && cd server && node server",
+=======
+    "start": "react-scripts start",
+>>>>>>> gird-layout
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:3212",
   "eslintConfig": {
     "extends": [
       "react-app",

@@ -27,9 +27,11 @@ export default function useGetGames(options, query, pageNumber) {
 
   useEffect(() => {
     let controller = new AbortController();
-    setLoading(true);
     setError(null);
     if (hasMore && options) {
+      setLoading(true);
+      console.log(options);
+      console.log(query);
       axios({
         method: "GET",
         url: "https://www.cheapshark.com/api/1.0/deals",
@@ -42,6 +44,7 @@ export default function useGetGames(options, query, pageNumber) {
           } else {
             setHasMore(true);
           }
+          console.log(res.data.length)
           setGames(prevGames => {
             return filterGames([...prevGames, ...res.data]);
           });
