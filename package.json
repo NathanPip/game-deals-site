@@ -16,10 +16,11 @@
   },
   "scripts": {
     "start": "react-scripts start && cd server && node server",
-    "build": "npm install && react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://localhost:3212",
   "eslintConfig": {
     "extends": [
       "react-app",
