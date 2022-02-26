@@ -11,7 +11,7 @@ export default function GamesListItem({ game, setSelected, isCard }) {
             src={game.thumb}
             alt={`${game.title} cover`}
           />
-          <h3 className="item-title">{game.title}</h3>
+          <h2 className="item-title">{game.title}</h2>
         </div>
         <div className="item-foot">
             <p className="item-original">Original Price: 
@@ -37,7 +37,7 @@ export default function GamesListItem({ game, setSelected, isCard }) {
             src={game.thumb}
             alt={`${game.title} cover`}
           />
-          <h3 className="item-title">{game.title}</h3>
+          <h2 className="item-title">{game.title}</h2>
         </div>
         <div className="item-foot">
           <p className="item-price">

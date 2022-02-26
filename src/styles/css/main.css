@@ -75,6 +75,11 @@ h1, h2, h3, h4, h5 {
 .games-list .btn:hover {
   cursor: pointer;
 }
+@media (max-width: 600px) {
+  .games-list .btn {
+    font-size: 1.5em;
+  }
+}
 .games-list .filter-button {
   font-size: 1.25em;
   flex: 1;
@@ -95,6 +100,11 @@ h1, h2, h3, h4, h5 {
 .games-list .filter-button:hover {
   cursor: pointer;
   background: #8032d8;
+}
+@media (max-width: 350px) {
+  .games-list .filter-button {
+    border-radius: 0.35em;
+  }
 }
 .games-list .search-input {
   height: 100%;
@@ -121,6 +131,10 @@ h1, h2, h3, h4, h5 {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+}
+.games-list .loading {
+  text-align: center;
+  font-size: 1.15em;
 }
 @media (min-width: 600px) {
   .games-list .search-input {
@@ -165,6 +179,9 @@ h1, h2, h3, h4, h5 {
   background: #6f2dbd;
   padding: 0.35em;
   margin-left: 0.5em;
+}
+.list-item .item-title {
+  font-size: 1.25em;
 }
 .list-item .item-img {
   height: 3.5em;

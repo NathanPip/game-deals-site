@@ -37,6 +37,9 @@
         &:hover {
             cursor: pointer;
         }
+        @media(max-width: $medium) {
+            font-size: 1.5em;
+        }
     }
     .filter-button {
         font-size: 1.25em;
@@ -57,6 +60,9 @@
         &:hover {
             cursor: pointer;
             background: $theme-color-light;
+        }
+        @media(max-width: 350px) {
+            border-radius: .35em;
         }
     }
     .search-input {
@@ -84,6 +90,10 @@
             justify-content: space-between;
             flex-wrap: wrap;
         }
+    }
+    .loading {
+        text-align: center;
+        font-size: 1.15em;
     }
     @include m.breakpoint($medium) {
         .search-input {

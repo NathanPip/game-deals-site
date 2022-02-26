@@ -94,14 +94,14 @@ export default function GamesList() {
           onClick={() => setIsGrid(true)}
         >
           <img
-            src="https://img.icons8.com/material-outlined/48/000000/activity-grid-2.png"
+            src="https://img.icons8.com/material-outlined/96/000000/activity-grid-2.png"
             alt="grid icon"
           />
         </button>
       </div>
       <div className={`games ${isGrid ? "grid" : ""}`}>
         {displayGames()}
-        <h1>{loading && "Loading..."}</h1>
+        <p className="loading">{loading && "Loading..."}</p>
       </div>
       <GameModal
         game={selectedGame}
