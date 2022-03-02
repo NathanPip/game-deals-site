@@ -1,4 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;1,300;1,400&display=swap");
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: "Poppins", sans-serif;
   line-height: 1.25;
@@ -245,16 +249,38 @@ h1, h2, h3, h4, h5 {
 
 header {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 10em;
+  position: relative;
+  justify-content: center;
+  margin: 0 auto;
   margin-top: 4em;
+  width: 100%;
+  max-width: 1300px;
 }
 header .title {
   font-size: 3em;
   font-weight: 500;
   border: 1px solid #6f2dbd;
   padding: 0.5em;
+  width: max-content;
+  max-width: 95%;
+}
+header .login-btn-group {
+  margin-right: auto;
+}
+header .form-btn {
+  background: #8032d8;
+  padding: 0.25em 0.5em;
+  color: #eee;
+  border: none;
+  border-radius: 0.25em;
+  margin: 0.75em 0 0.75em 0.5em;
+  transition: 0.2s ease-in-out background;
+}
+header .form-btn:hover {
+  background: rgba(128, 50, 216, 0.8);
+  cursor: pointer;
 }
 
 .options-menu {
@@ -421,6 +447,86 @@ header .title {
 }
 .modal-bg .modal-card .modal-foot .deals-list li:hover {
   background: #353535;
+}
+
+.account-modal {
+  font-size: 1.25em;
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(22, 22, 22, 0.2);
+}
+.account-modal .modal-body {
+  padding: 2em;
+  padding-bottom: 3em;
+  border: 2px solid #8032d8;
+  border-radius: 1.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #161616;
+}
+.account-modal .form-btn {
+  font-size: 0.65em;
+  margin-right: auto;
+  margin-left: 0;
+}
+.account-modal .form-btn.close-btn {
+  font-size: 0.7em;
+  margin-right: 0;
+  margin-left: auto;
+  background: #161616;
+  border: 2px solid #8032d8;
+}
+.account-modal .form-btn.close-btn:hover {
+  background: rgba(128, 50, 216, 0.2);
+}
+.account-modal .form-redirect {
+  font-weight: 300;
+  font-size: 0.75em;
+  color: #8032d8;
+}
+.account-modal .form-redirect:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.account-modal .account-form {
+  margin-top: 2em;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.35em;
+}
+.account-modal .account-form .account-form-input {
+  font-size: 0.8em;
+  border: none;
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  color: #eee;
+  background-color: #5a5a5a;
+}
+.account-modal .account-form .account-form-input:focus {
+  border: none;
+  outline: none;
+}
+.account-modal .account-form .form-submit-btn {
+  margin-top: 2em;
+  border: none;
+  border-radius: 1em;
+  padding: 0.15em 0.35em;
+  background: #8032d8;
+  color: #eee;
+  transition: 0.2s ease-in-out background;
+}
+.account-modal .account-form .form-submit-btn:hover {
+  cursor: pointer;
+  background: rgba(128, 50, 216, 0.8);
+}
+.account-modal .account-form #email {
+  margin-bottom: 1em;
 }
 
 /*# sourceMappingURL=main.css.map */

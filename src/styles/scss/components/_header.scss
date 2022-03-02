@@ -1,15 +1,38 @@
 @use "../abstracts/variables" as *;
 
 header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 10em;
-    margin-top: 4em;
-    .title {
-        font-size: 3em;
-        font-weight: 500;
-        border: 1px solid $theme-color;
-        padding: .5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  justify-content: center;
+//   height: 10em;
+  margin: 0 auto;
+  margin-top: 4em;
+  width: 100%;
+  max-width: 1300px;
+  .title {
+    font-size: 3em;
+    font-weight: 500;
+    border: 1px solid $theme-color;
+    padding: 0.5em;
+    width: max-content;
+    max-width: 95%;
+  }
+  .login-btn-group {
+    margin-right: auto;
+  }
+  .form-btn {
+    background: $theme-color-light;
+    padding: 0.25em 0.5em;
+    color: $secondary-color;
+    border: none;
+    border-radius: 0.25em;
+    margin: .75em 0 .75em 0.5em;
+    transition: .2s ease-in-out background;
+    &:hover {
+      background: rgba($theme-color-light, 0.8);
+      cursor: pointer;
     }
+  }
 }
