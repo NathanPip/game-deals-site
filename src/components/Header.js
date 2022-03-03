@@ -1,28 +1,59 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import AccountModal from "./AccountModal";
-
+import { useAuth } from "../contexts/authContext";
 
 export default function Header() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalType, setModalType] = useState(null);
+  const { currentUser, signout } = useAuth();
 
-    const [modalOpen, setModalOpen] = useState(false);
-    const [modalType, setModalType] = useState(null);
+  const handleAccountButtonClick = type => {
+    setModalOpen(true);
+    setModalType(type);
+  };
 
-    const handleAccountButtonClick = (type) => {
-        setModalOpen(true);
-        setModalType(type);
+  function renderButtons() {
+    if (currentUser) {
+      return (
+        <div className="login-btn-group">
+          <p className="user-email">{currentUser ? `Signed in as ${currentUser.email}` : ""}</p>
+          <button className="form-btn signup" onClick={signout}>
+            Sign Out
+          </button>
+        </div>
+      );
+    } else {
+      return (
+        <div className="login-btn-group">
+          <button
+            className="form-btn login"
+            onClick={() => handleAccountButtonClick("login")}
+          >
+            Login
+          </button>
+          <button
+            className="form-btn signup"
+            onClick={() => handleAccountButtonClick("signup")}
+          >
+            Sign Up
+          </button>
+        </div>
+      );
     }
-
+  }
 
   return (
     <header>
       {/* login/Signup buttons */}
-      <div className="login-btn-group">
-        <button className="form-btn login" onClick={()=>handleAccountButtonClick('login')}>Login</button>
-        <button className="form-btn signup" onClick={()=>handleAccountButtonClick('signup')}>Sign Up</button>
-      </div>
+      {renderButtons()}
       {/* main heading */}
       <h1 className="title">Player's Plug</h1>
-      <AccountModal isOpen={modalOpen} setIsOpen={setModalOpen} type={modalType} setType={setModalType}/>
+      <AccountModal
+        isOpen={modalOpen}
+        setIsOpen={setModalOpen}
+        type={modalType}
+        setType={setModalType}
+      />
     </header>
   );
 }

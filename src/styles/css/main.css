@@ -269,6 +269,11 @@ header .title {
 header .login-btn-group {
   margin-right: auto;
 }
+header .login-btn-group .user-email {
+  margin: 0;
+  margin-left: 0.5em;
+  font-size: 0.9em;
+}
 header .form-btn {
   background: #8032d8;
   padding: 0.25em 0.5em;
@@ -461,6 +466,7 @@ header .form-btn:hover {
   background: rgba(22, 22, 22, 0.2);
 }
 .account-modal .modal-body {
+  min-height: 400px;
   padding: 2em;
   padding-bottom: 3em;
   border: 2px solid #8032d8;
@@ -496,15 +502,16 @@ header .form-btn:hover {
 }
 .account-modal .account-form {
   margin-top: 2em;
+  min-width: 95%;
   display: flex;
   flex-direction: column;
   row-gap: 0.35em;
 }
 .account-modal .account-form .account-form-input {
-  font-size: 0.8em;
+  font-size: 0.7em;
   border: none;
   border-radius: 0.25em;
-  padding: 0.25em 0.5em;
+  padding: 0.35em 0.6em;
   color: #eee;
   background-color: #5a5a5a;
 }
@@ -512,7 +519,10 @@ header .form-btn:hover {
   border: none;
   outline: none;
 }
-.account-modal .account-form .form-submit-btn {
+.account-modal .account-form #email {
+  margin-bottom: 1em;
+}
+.account-modal .form-submit-btn {
   margin-top: 2em;
   border: none;
   border-radius: 1em;
@@ -521,12 +531,9 @@ header .form-btn:hover {
   color: #eee;
   transition: 0.2s ease-in-out background;
 }
-.account-modal .account-form .form-submit-btn:hover {
+.account-modal .form-submit-btn:hover {
   cursor: pointer;
   background: rgba(128, 50, 216, 0.8);
-}
-.account-modal .account-form #email {
-  margin-bottom: 1em;
 }
 
 /*# sourceMappingURL=main.css.map */

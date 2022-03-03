@@ -11,6 +11,7 @@
   align-items: center;
   background: rgba($primary-color, 0.2);
   .modal-body {
+    min-height: 400px;
     padding: 2em;
     padding-bottom: 3em;
     border: 2px solid $theme-color-light;
@@ -46,14 +47,15 @@
 }
   .account-form {
     margin-top: 2em;
+    min-width: 95%;
     display: flex;
     flex-direction: column;
     row-gap: 0.35em;
     .account-form-input {
-        font-size: .8em; 
+      font-size: .7em; 
       border: none;
       border-radius: 0.25em;
-      padding: 0.25em 0.5em;
+      padding: 0.35em 0.6em;
       color: $secondary-color;
       background-color: $primary-color-light;
       &:focus {
@@ -61,21 +63,21 @@
           outline: none;
       }
     }
-    .form-submit-btn {
-      margin-top: 2em;
-      border: none;
-      border-radius: 1em;
-      padding: 0.15em 0.35em;
-      background: $theme-color-light;
-      color: $secondary-color;
-      transition: .2s ease-in-out background;
-      &:hover {
-          cursor: pointer;
-          background: rgba($theme-color-light, .8);
-      }
-    }
     #email {
       margin-bottom: 1em;
+    }
+  }
+  .form-submit-btn {
+    margin-top: 2em;
+    border: none;
+    border-radius: 1em;
+    padding: 0.15em 0.35em;
+    background: $theme-color-light;
+    color: $secondary-color;
+    transition: .2s ease-in-out background;
+    &:hover {
+        cursor: pointer;
+        background: rgba($theme-color-light, .8);
     }
   }
 }
