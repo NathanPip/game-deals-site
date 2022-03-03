@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-
 import { useAuth } from "../contexts/authContext";
 
 export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
@@ -12,11 +11,14 @@ export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
   const signupPasswordRef = useRef();
   const signupPasswordConfirmRef = useRef();
 
-  const { signup, login, currentUser, signout } = useAuth();
+  //values provided from authContext
+  const { signup, login} = useAuth();
 
+  //loading and error states for login and signup requests
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  //handles signup - checks for valid email input as well as if both passwords entered match and calls the signup function when both conditions are met
   async function handleSignupSubmit(e) {
     e.preventDefault();
 
@@ -44,6 +46,7 @@ export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
     }
   }
 
+  //handles login - calls the login function with email and password entered
   async function handleLoginSubmit(e) {
     e.preventDefault();
 
@@ -58,12 +61,13 @@ export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
       handleCloseModal();
     }
   }
-
+  //closes the modal and sets error back to default value
   function handleCloseModal() {
     setIsOpen(false);
     setError("");
   }
 
+  //the login form that is rendered if modal state is in login
   const loginForm = (
     <div className="modal-body">
       <button className="form-btn close-btn" onClick={handleCloseModal}>
@@ -106,7 +110,8 @@ export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
       </p>
     </div>
   );
-
+  
+  //form that is rendered if modal state is in signup
   const signupForm = (
     <div className="modal-body">
       <button className="form-btn close-btn" onClick={handleCloseModal}>
@@ -158,6 +163,7 @@ export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
     </div>
   );
 
+  //check to see modal state and render corresponding form
   function renderAccountForm() {
     if (type === "signup") {
       return signupForm;
@@ -165,7 +171,7 @@ export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
       return loginForm;
     }
   }
-
+//if the modal is open render the modal else render nothing
   if (isOpen) {
     return (
       <div className="account-modal">{renderAccountForm()}</div>
