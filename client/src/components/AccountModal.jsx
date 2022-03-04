@@ -1,5 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useAuth } from "../contexts/authContext";
+import { useGlobalState } from "../contexts/globalContext";
+import { postUserProfile, getUserWishlist } from "../hooks/helperFunctions";
 
 export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
   //login field references
@@ -12,7 +14,8 @@ export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
   const signupPasswordConfirmRef = useRef();
 
   //values provided from authContext
-  const { signup, login} = useAuth();
+  const { signup, login, currentUser } = useAuth();
+  const {setWishlist} = useGlobalState();
 
   //loading and error states for login and signup requests
   const [error, setError] = useState("");
@@ -34,15 +37,16 @@ export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
     try {
       setError("");
       setLoading(true);
-      await signup(
+      const sign = await signup(
         signupEmailRef.current.value,
         signupPasswordRef.current.value
       );
+      await postUserProfile(sign.user);
+      handleCloseModal();
     } catch (err) {
       setError("failed to create account");
     } finally {
       setLoading(false);
-      handleCloseModal();
     }
   }
 
@@ -53,18 +57,24 @@ export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
     try {
       setError("");
       setLoading(true);
-      await login(loginEmailRef.current.value, loginPasswordRef.current.value);
+      const log = await login(
+        loginEmailRef.current.value,
+        loginPasswordRef.current.value
+      );
+      const wishlist = await getUserWishlist(log.user);
+      setWishlist(wishlist);
+      handleCloseModal();
     } catch {
       setError("failed to login");
     } finally {
       setLoading(false);
-      handleCloseModal();
     }
   }
   //closes the modal and sets error back to default value
   function handleCloseModal() {
     setIsOpen(false);
     setError("");
+    setLoading(false);
   }
 
   //the login form that is rendered if modal state is in login
@@ -110,7 +120,7 @@ export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
       </p>
     </div>
   );
-  
+
   //form that is rendered if modal state is in signup
   const signupForm = (
     <div className="modal-body">
@@ -171,11 +181,9 @@ export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
       return loginForm;
     }
   }
-//if the modal is open render the modal else render nothing
+  //if the modal is open render the modal else render nothing
   if (isOpen) {
-    return (
-      <div className="account-modal">{renderAccountForm()}</div>
-    );
+    return <div className="account-modal">{renderAccountForm()}</div>;
   } else {
     return null;
   }

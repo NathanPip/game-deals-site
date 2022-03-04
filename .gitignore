@@ -21,6 +21,10 @@
 .env.test.local
 .env.production.local
 
+# database queries
+/server/database.sql
+/server/db.js
+
 /.vscode
 
 npm-debug.log*

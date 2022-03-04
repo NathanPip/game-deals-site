@@ -1,0 +1,8 @@
+{
+  "short_name": "PP",
+  "name": "Players Plug",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#6f2dbd",
+  "background_color": "#161616"
+}
