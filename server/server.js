@@ -26,11 +26,11 @@ app.get("/steamData", (req, res) => {
     url: `https://store.steampowered.com/api/appdetails?appids=${steamID}`
   })
     .then(response => {
-      res.send(200, response.data);
+      res.status(200).send(response.data);
     })
     .catch(err => {
       Error(err);
-      res.send(err);
+      res.status(400).send(err);
     });
 });
 
@@ -42,10 +42,10 @@ app.post("/user/signup", async (req, res) => {
       "INSERT INTO users (uid, email) VALUES($1, $2) RETURNING *",
       [uid, email]
     );
-    res.json(newUser.rows);
+    res.status(200).send(newUser.rows);
   } catch (err) {
     console.log(err.message);
-    res.json(err.message);
+    res.status(400).send(err.message);
   }
 });
 //get games from user wishlist -- using a post request as I do not want the users id to be displayed in the url parameters for security reasons
@@ -56,36 +56,44 @@ app.post("/user/games/get", async (req, res) => {
       "SELECT g.game_id FROM wishlisted_games g WHERE g.uid = $1",
       [uid]
     );
-    res.json(games.rows);
+    res.status(200).send(games.rows);
   } catch (err) {
-    res.json(err.message);
+    res.status(400).send(err.message);
     console.log(err.message);
   }
 });
 
 //add games to wishlist
-app.post('/user/games', async (req, res) => {
+app.post("/user/games", async (req, res) => {
   try {
-    const {uid, game_id} = req.body;
-    const newGame = await data.query("INSERT INTO wishlisted_games (uid, game_id) VALUES ($1, $2) RETURNING *", [uid, game_id]);
-    res.json(newGame.rows);
+    const { uid, game_id, game_title } = req.body;
+    const newGame = await data.query(
+      "INSERT INTO wishlisted_games (uid, game_id, game_title) VALUES ($1, $2, $3) RETURNING *",
+      [uid, game_id, game_title]
+    );
+    console.log(newGame.rows);
+    res.status(200).send(newGame.rows);
   } catch (err) {
-    res.json(err.message)
+    res.status(400).send(err.message);
     console.log(err.message);
   }
-})
+});
 
 //remove game from wishlist
-app.delete('/user/games', async (req, res) => {
+app.delete("/user/games", async (req, res) => {
   try {
-    const {uid, game_id} = req.body;
-    const deleteGame = await data.query("DELETE FROM wishlisted_games w WHERE w.uid = $1 AND w.game_id = $2", [uid, game_id]);
-    res.json('game deleted');
+    const { uid, game_title } = req.body;
+    await data.query(
+      "DELETE FROM wishlisted_games w WHERE w.uid = $1 AND w.game_title = $2",
+      [uid, game_title]
+    );
+    console.log('game_deleted')
+    res.status(200).send('game deleted')
   } catch (err) {
-    res.json(err.message);
+    res.status(400).send(err.message);
     console.log(err.message);
   }
-})
+});
 
 //serves index file
 app.get("/", (req, res) => {

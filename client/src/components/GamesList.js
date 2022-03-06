@@ -3,6 +3,7 @@ import GamesListItem from "./GamesListItem.js";
 import GameModal from "./GameModal.js";
 import OptionsMenu from "./OptionsMenu";
 import useGetGames from "../hooks/useGetGames.js";
+import Wishlist from "./Wishlist.js";
 
 export default function GamesList() {
   //options and stores set by the options menu
@@ -77,9 +78,10 @@ export default function GamesList() {
           onChange={handleSearch}
           placeholder="search for a game"
         ></input>
-        <OptionsMenu setOptions={setOptions} setAllStores={setStores} />
+        <Wishlist setSelected={setSelectedGame} />
       </div>
       <div className="layout-btn-group">
+        <OptionsMenu setOptions={setOptions} setAllStores={setStores} />
         <button
           className={`btn ${isGrid ? "" : "isGrid"}`}
           onClick={() => setIsGrid(false)}
