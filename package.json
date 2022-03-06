@@ -1,0 +1,22 @@
+{
+  "name": "games-cheap",
+  "version": "1.0.0",
+  "description": "the place to find the game your looking for at the cheapest possible price",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd server && npm install && node server",
+    "build": "cd client && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nather22/GamesCheap.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nather22/GamesCheap/issues"
+  },
+  "homepage": "https://github.com/nather22/GamesCheap#readme"
+}

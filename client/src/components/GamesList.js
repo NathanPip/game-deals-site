@@ -78,8 +78,8 @@ export default function GamesList() {
           onChange={handleSearch}
           placeholder="search for a game"
         ></input>
-        <Wishlist setSelected={setSelectedGame} />
       </div>
+        <Wishlist setSelected={setSelectedGame} />
       <div className="layout-btn-group">
         <OptionsMenu setOptions={setOptions} setAllStores={setStores} />
         <button

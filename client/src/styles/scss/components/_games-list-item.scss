@@ -40,11 +40,26 @@
     }
   }
   .item-title {
-    font-size: 1.25em;
+    font-size: 1em;
   }
   .item-img {
     height: 3.5em;
     margin-right: 0.45em;
+  }
+  .wishlist-add-btn {
+    text-align: center;
+    padding: .5em;
+    background: $primary-color;
+    border: 1px solid $theme-color;
+    border-radius: .5em;
+    color: $theme-color;
+    margin-right: .5em;
+    transition: .25s ease-in-out background, .25s ease-in-out color;
+    &:hover {
+      background: rgba($theme-color, .2);
+      color: $secondary-color;
+      cursor: pointer;
+    }
   }
   &:hover {
     cursor: pointer;

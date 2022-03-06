@@ -2,33 +2,67 @@
 @use "../abstracts/mixins" as m;
 
 .wishlist {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid $theme-color;
-    padding: .5em;
-    width: 95%;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid $theme-color;
+  padding: 0.25em;
+  margin: .5em 0;
+  max-height: 600px;
+  overflow-y: scroll;
+  width: 95%;
+  .wishlist-title {
+      text-align: center;
+      font-weight: 300;
+      margin-bottom: .5em;
+      color: $theme-color;
+  }
+  .alert-text {
+      text-align: center;
+  }
+  .game.list-item {
+    font-size: 0.75em;
+  }
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: $primary-color;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: $primary-color-medium;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: $primary-color-light;
+  }
 }
 .wishlist-button {
-    font-size: 1.25em;
-    flex: 1;
-    margin: .5em 0;
+  font-size: 1.25em;
+  margin: 0.5em 0;
+  color: $theme-color;
+  width: 100%;
+  background: transparent;
+  padding: 0.25em 0;
+  border: none;
+  border: 1px solid $theme-color;
+  transition: 0.25s ease-in-out;
+  &.hide-button {
+    margin: 0.5em auto;
+    width: 5em;
+    font-size: 1em;
+    background: rgba($theme-color, .5);
     color: $secondary-color;
-    background: $theme-color;
-    padding: .25em 0;
-    border-top-right-radius: .35em;
-    border-bottom-right-radius: .35em;
-    border: none;
-    transition: .25s ease-in-out;
-    &.hide-button {
-        margin: .5em;
-        font-size: 1em;
-        border-radius: .35em;
-    }
-    &:hover {
-        cursor: pointer;
-        background: $theme-color-light;
-    }
-    @media(max-width: 350px) {
-        border-radius: .35em;
-    }
+  }
+  &:hover {
+    cursor: pointer;
+    background: rgba($theme-color, .5);
+    color: $secondary-color;
+  }
+  @media (max-width: 350px) {
+    border-radius: 0.35em;
+  }
 }

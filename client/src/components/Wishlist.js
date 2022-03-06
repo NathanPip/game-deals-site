@@ -8,9 +8,17 @@ export default function Wishlist({ setSelected }) {
 
   //renders the games when wishlist is not loading
   function renderGames() {
-      console.log(wishlistIDs);
-    return wishlist.map((game) => {
-      return <GamesListItem game={game} setSelected={setSelected} isWishlist={true}/>
+    if (!wishlist.length) {
+      return <p className="alert-text">add games to to wishlist</p>;
+    }
+    return wishlist.map(game => {
+      return (
+        <GamesListItem
+          game={game}
+          setSelected={setSelected}
+          isWishlist={true}
+        />
+      );
     });
   }
 
@@ -30,10 +38,16 @@ export default function Wishlist({ setSelected }) {
   //if not hiding then display filter options
   return (
     <div className="wishlist">
-      {(!loading && wishlist) ? renderGames() : <p>loading</p>}
+      <h2 className="wishlist-title">Wishlist</h2>
       <button className="wishlist-button hide-button" onClick={toggleHide}>
         Hide
       </button>
+      {!loading && wishlist ? renderGames() : <p>loading</p>}
+      {wishlist.length > 5 ? (
+        <button className="wishlist-button hide-button" onClick={toggleHide}>
+          Hide
+        </button>
+      ) : null}
     </div>
   );
 }

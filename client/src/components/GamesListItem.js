@@ -26,7 +26,7 @@ export default function GamesListItem({
   //if the list is in grid mode isCard = true
   if (isCard) {
     return (
-      <div className="list-item card" onClick={() => setSelected(game)}>
+      <div className="game list-item card" onClick={() => setSelected(game)}>
         <div className="item-head">
           <img
             className="item-img"
@@ -57,7 +57,7 @@ export default function GamesListItem({
   //if the list is in not in grid mode isCard = true
   if (!isCard) {
     return (
-      <div className="list-item" onClick={() => setSelected(game)}>
+      <div className="game list-item" onClick={() => setSelected(game)}>
         <div className="item-head">
           <img
             className="item-img"
@@ -68,10 +68,10 @@ export default function GamesListItem({
         </div>
         <div className="item-foot">
           <button
-            className="wishlist add"
+            className="wishlist-add-btn"
             onClick={isWishlist ? removeFromWishlist : addToWishlist}
           >
-            +
+          {isWishlist ? '-' : '+'}
           </button>
           <p className="item-price">
             {Math.round(game.savings) !== 0 && (

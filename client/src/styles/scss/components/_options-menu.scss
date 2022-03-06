@@ -1,11 +1,13 @@
 @use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as m;
 
 
 .options-menu {
-    display: flex;
+    display: none;
     justify-content: space-between;
     font-size: .75em;
     width: 60%;
+    margin: .5em 0;
     margin-right: auto;
     .options-item {
         text-align: center;
@@ -44,5 +46,8 @@
             flex: 1;
             margin: 0 .25em;
         }
+    }
+    @include m.breakpoint($medium){
+        display: flex;
     }
 }
