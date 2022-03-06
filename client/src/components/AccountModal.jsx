@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useAuth } from "../contexts/authContext";
 import { useGlobalState } from "../contexts/globalContext";
-import { postUserProfile, getUserWishlist } from "../hooks/helperFunctions";
 
 export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
   //login field references
@@ -14,12 +13,13 @@ export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
   const signupPasswordConfirmRef = useRef();
 
   //values provided from authContext
-  const { signup, login, currentUser } = useAuth();
-  const {setWishlist} = useGlobalState();
+  const { signup, login } = useAuth();
 
   //loading and error states for login and signup requests
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const {postUserProfile, getUserWishlist} = useGlobalState();
 
   //handles signup - checks for valid email input as well as if both passwords entered match and calls the signup function when both conditions are met
   async function handleSignupSubmit(e) {
@@ -62,7 +62,6 @@ export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
         loginPasswordRef.current.value
       );
       const wishlist = await getUserWishlist(log.user);
-      setWishlist(wishlist);
       handleCloseModal();
     } catch {
       setError("failed to login");

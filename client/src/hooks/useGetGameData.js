@@ -78,6 +78,7 @@ export default function useGetGameData(game) {
         signal: controller.signal
       })
         .then(res => {
+          console.log(res.data)
           return res.data;
         })
         .then(data => {

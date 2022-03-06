@@ -57,7 +57,8 @@ h1, h2, h3, h4, h5 {
   width: 100%;
 }
 .games-list .layout-btn-group {
-  margin-left: auto;
+  width: 100%;
+  display: flex;
 }
 .games-list .btn {
   width: 1.5em;
@@ -68,6 +69,7 @@ h1, h2, h3, h4, h5 {
   background: #5a5a5a;
   color: #eee;
   margin-left: 0.25em;
+  margin-top: auto;
 }
 .games-list .btn img {
   width: 100%;
@@ -82,32 +84,6 @@ h1, h2, h3, h4, h5 {
 @media (max-width: 600px) {
   .games-list .btn {
     font-size: 1.5em;
-  }
-}
-.games-list .filter-button {
-  font-size: 1.25em;
-  flex: 1;
-  margin: 0.5em 0;
-  color: #eee;
-  background: #6f2dbd;
-  padding: 0.25em 0;
-  border-top-right-radius: 0.35em;
-  border-bottom-right-radius: 0.35em;
-  border: none;
-  transition: 0.25s ease-in-out;
-}
-.games-list .filter-button.hide-button {
-  margin: 0.5em;
-  font-size: 1em;
-  border-radius: 0.35em;
-}
-.games-list .filter-button:hover {
-  cursor: pointer;
-  background: #8032d8;
-}
-@media (max-width: 350px) {
-  .games-list .filter-button {
-    border-radius: 0.35em;
   }
 }
 .games-list .search-input {
@@ -149,7 +125,7 @@ h1, h2, h3, h4, h5 {
 .list-item {
   display: flex;
   justify-content: space-between;
-  max-width: 100%;
+  width: 100%;
   padding: 0.5em;
   border: 2px solid #6f2dbd;
   margin: 0.25em auto;
@@ -290,25 +266,22 @@ header .form-btn:hover {
 
 .options-menu {
   display: flex;
-  flex-direction: column;
-  font-size: 1.25em;
-  border: 1px solid #6f2dbd;
-  width: 95%;
-  margin-bottom: 0.25em;
+  justify-content: space-between;
+  font-size: 0.75em;
+  width: 60%;
+  margin-right: auto;
 }
 .options-menu .options-item {
-  margin: 0.5em 0;
   text-align: center;
 }
 .options-menu .options-item label {
-  font-size: 1.25em;
-  margin-bottom: 0.25em;
+  font-size: 1.1em;
+  margin-bottom: 0.5em;
   display: block;
 }
 .options-menu .options-item select {
   background: #8032d8;
   color: #eee;
-  outline: none;
   border: none;
   border-radius: 5px;
   padding: 0.15em 0.25em;
@@ -334,6 +307,42 @@ header .form-btn:hover {
 }
 .options-menu .options-item .range-minmax {
   flex: 1;
+  margin: 0 0.25em;
+}
+
+.wishlist {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #6f2dbd;
+  padding: 0.5em;
+  width: 95%;
+}
+
+.wishlist-button {
+  font-size: 1.25em;
+  flex: 1;
+  margin: 0.5em 0;
+  color: #eee;
+  background: #6f2dbd;
+  padding: 0.25em 0;
+  border-top-right-radius: 0.35em;
+  border-bottom-right-radius: 0.35em;
+  border: none;
+  transition: 0.25s ease-in-out;
+}
+.wishlist-button.hide-button {
+  margin: 0.5em;
+  font-size: 1em;
+  border-radius: 0.35em;
+}
+.wishlist-button:hover {
+  cursor: pointer;
+  background: #8032d8;
+}
+@media (max-width: 350px) {
+  .wishlist-button {
+    border-radius: 0.35em;
+  }
 }
 
 .modal-bg {

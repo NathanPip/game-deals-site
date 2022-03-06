@@ -5,15 +5,15 @@ import { GlobalStateProvider } from "./contexts/globalContext.js";
 
 function App() {
   return (
-    <GlobalStateProvider>
-      <AuthProvider>
+    <AuthProvider>
+      <GlobalStateProvider>
         <div className="container">
           <Header />
           <GamesList />
           <div className="footer"></div>
         </div>
-      </AuthProvider>
-    </GlobalStateProvider>
+      </GlobalStateProvider>
+    </AuthProvider>
   );
 }
 

@@ -63,13 +63,13 @@ export default function OptionsMenu({ setOptions, setAllStores }) {
     setHiding(prev => !prev);
   };
   //if options are hiding then display show button
-  if (hiding) {
-    return (
-      <button className="filter-button" onClick={toggleHide}>
-        Filter
-      </button>
-    );
-  }
+  // if (hiding) {
+  //   return (
+  //     <button className="filter-button" onClick={toggleHide}>
+  //       Filter
+  //     </button>
+  //   );
+  // }
   //if not hiding then display filter options
   return (
     <div className="options-menu">
@@ -112,16 +112,14 @@ export default function OptionsMenu({ setOptions, setAllStores }) {
             onChange={handlePriceChange}
           ></input>
           <span className="range-minmax">
-            {currentPrice === priceRange[1]
-              ? `$${priceRange[1] - 1}`
-              : `$${currentPrice}`}
+            ${priceRange[1]}
           </span>
         </div>
       </div>
 
       <div className="options-item">
         <label htmlFor="savings-range">
-          Steam Ratings: {steamRating <= 5 ? "Any" : `Above ${steamRating}%`}
+          Steam Ratings: {steamRating <= 5 ? "Any" : `> ${steamRating}%`}
         </label>
         <div className="range-values">
           <span className="range-minmax">{ratingsRange[0]}%</span>
@@ -138,9 +136,6 @@ export default function OptionsMenu({ setOptions, setAllStores }) {
           <span className="range-minmax">{ratingsRange[1]}%</span>
         </div>
       </div>
-      <button className="filter-button hide-button" onClick={toggleHide}>
-        Hide
-      </button>
     </div>
   );
 }

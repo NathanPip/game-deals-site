@@ -16,7 +16,8 @@
         width: 100%;
     }
     .layout-btn-group {
-        margin-left: auto;
+        width: 100%;
+        display: flex;
     }
     .btn {
         width: 1.5em;
@@ -24,9 +25,10 @@
         border-radius: .25em;
         border: none;
         padding: .15em;
-        background: $primary-color-light ;
+        background: $primary-color-light;
         color: $secondary-color;
         margin-left: .25em;
+        margin-top: auto;
         img {
             width: 100%;
             height: 100%;
@@ -39,30 +41,6 @@
         }
         @media(max-width: $medium) {
             font-size: 1.5em;
-        }
-    }
-    .filter-button {
-        font-size: 1.25em;
-        flex: 1;
-        margin: .5em 0;
-        color: $secondary-color;
-        background: $theme-color;
-        padding: .25em 0;
-        border-top-right-radius: .35em;
-        border-bottom-right-radius: .35em;
-        border: none;
-        transition: .25s ease-in-out;
-        &.hide-button {
-            margin: .5em;
-            font-size: 1em;
-            border-radius: .35em;
-        }
-        &:hover {
-            cursor: pointer;
-            background: $theme-color-light;
-        }
-        @media(max-width: 350px) {
-            border-radius: .35em;
         }
     }
     .search-input {

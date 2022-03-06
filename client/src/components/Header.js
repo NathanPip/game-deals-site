@@ -1,23 +1,30 @@
 import React, { useState } from "react";
 import AccountModal from "./AccountModal";
 import { useAuth } from "../contexts/authContext";
+import { useGlobalState } from "../contexts/globalContext";
 
 export default function Header() {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalType, setModalType] = useState(null);
   const { currentUser, signout } = useAuth();
+  const {setWishlist} = useGlobalState();
 
-  const handleAccountButtonClick = type => {
+  function handleAccountButtonClick (type) {
     setModalOpen(true);
     setModalType(type);
   };
+
+  function handleSignout () {
+    setWishlist([]);
+    signout();
+  }
 
   function renderButtons() {
     if (currentUser) {
       return (
         <div className="login-btn-group">
           <p className="user-email">{currentUser ? `Signed in as ${currentUser.email}` : ""}</p>
-          <button className="form-btn signup" onClick={signout}>
+          <button className="form-btn signup" onClick={handleSignout}>
             Sign Out
           </button>
         </div>
