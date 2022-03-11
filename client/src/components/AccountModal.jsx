@@ -61,7 +61,6 @@ export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
         loginEmailRef.current.value,
         loginPasswordRef.current.value
       );
-      const wishlist = await getUserWishlist(log.user);
       handleCloseModal();
     } catch {
       setError("failed to login");

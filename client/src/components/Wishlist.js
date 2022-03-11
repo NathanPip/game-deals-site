@@ -4,7 +4,7 @@ import GamesListItem from "./GamesListItem";
 
 export default function Wishlist({ setSelected }) {
   const [hiding, setHiding] = useState(true);
-  const { wishlist, loading, wishlistIDs } = useGlobalState();
+  const { wishlist, wishlistLoading } = useGlobalState();
 
   //renders the games when wishlist is not loading
   function renderGames() {
@@ -14,6 +14,7 @@ export default function Wishlist({ setSelected }) {
     return wishlist.map(game => {
       return (
         <GamesListItem
+          key={game.title}
           game={game}
           setSelected={setSelected}
           isWishlist={true}
@@ -42,7 +43,7 @@ export default function Wishlist({ setSelected }) {
       <button className="wishlist-button hide-button" onClick={toggleHide}>
         Hide
       </button>
-      {!loading && wishlist ? renderGames() : <p>loading</p>}
+      {!wishlistLoading && wishlist ? renderGames() : <p>loading</p>}
       {wishlist.length > 5 ? (
         <button className="wishlist-button hide-button" onClick={toggleHide}>
           Hide

@@ -1,6 +1,7 @@
 import React from "react";
 import { useAuth } from "../contexts/authContext";
 import { useGlobalState } from "../contexts/globalContext";
+import { addGameToWishlist, deleteGameFromWishlist } from "../helpers/wishlistAPIFunctions";
 
 //gets game data from games list
 export default function GamesListItem({
@@ -10,17 +11,17 @@ export default function GamesListItem({
   isWishlist
 }) {
   
-  const {addGameToWishlist, deleteGameFromWishlist} = useGlobalState();
+  const {setWishlist, wishlist} = useGlobalState();
   const { currentUser } = useAuth();
 
   async function addToWishlist(e) {
     e.stopPropagation();
-    await addGameToWishlist(game, currentUser);
+    await addGameToWishlist(game, currentUser, setWishlist, wishlist);
   }
 
   async function removeFromWishlist(e) {
     e.stopPropagation();
-    await deleteGameFromWishlist(game, currentUser);
+    await deleteGameFromWishlist(game, currentUser, setWishlist);
   }
 
   //if the list is in grid mode isCard = true

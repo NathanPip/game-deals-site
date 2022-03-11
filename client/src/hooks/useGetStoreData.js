@@ -1,15 +1,6 @@
 import {useEffect, useState} from 'react'
 import axios from 'axios'
-
-//filters stores and only returns stores that are currently active
-const filterActive = (stores) => {
-    const filtered = [];
-    for(let i=0; i<stores.length; i++){
-        if (stores[i].isActive)
-            filtered.push(stores[i])
-    }
-    return filtered;
-} 
+import { filterActive } from '../helpers/helperFunctions';
 
 //returns all active store data including, store id, store icon, and store name
 
