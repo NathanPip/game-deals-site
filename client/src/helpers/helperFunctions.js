@@ -21,3 +21,14 @@ export const filterActive = (stores) => {
     }
     return filtered;
 } 
+
+//filters games based on title so duplicates do not show up
+export const filterGames = games => {
+  const titles = [];
+  const filteredGames = [];
+  for (let i = 0; i < games.length; i++) {
+    if (!titles.includes(games[i].title)) filteredGames.push(games[i]);
+    titles.push(games[i].title);
+  }
+  return filteredGames;
+};

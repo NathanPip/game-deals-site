@@ -20,14 +20,14 @@ export default function GamesList() {
   //the game taht will be displayed in the modal
   const [selectedGame, setSelectedGame] = useState(null);
   //call returns game deals based on options and query, returns deals sorted by deal rating by default
-  const { loading, games } = useGetGames(options, query, pageNumber);
+  const { gamesListLoading, games } = useGetGames(options, query, pageNumber);
 
   //handles the observation to signal when to fire another api call for another page
   //currently set to view a specific list item and fire when that list item is visible
   const observer = useRef();
   const handleObservation = useCallback(
     node => {
-      if (loading || noScroll) return;
+      if (gamesListLoading || noScroll) return;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver(entries => {
         if (entries[0].isIntersecting) {
@@ -36,7 +36,7 @@ export default function GamesList() {
       });
       if (node) observer.current.observe(node);
     },
-    [loading, noScroll]
+    [gamesListLoading, noScroll]
   );
   //handles search query
   const handleSearch = e => {
@@ -103,7 +103,7 @@ export default function GamesList() {
       </div>
       <div className={`games ${isGrid ? "grid" : ""}`}>
         {displayGames()}
-        <p className="loading">{loading && "Loading..."}</p>
+        <p className="loading">{gamesListLoading && "Loading..."}</p>
       </div>
       <GameModal
         game={selectedGame}

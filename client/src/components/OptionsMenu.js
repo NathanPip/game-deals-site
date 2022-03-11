@@ -13,7 +13,7 @@ export default function OptionsMenu({ setOptions, setAllStores }) {
   //sets the current store to filter games by
   const [currentStore, setCurrentStore] = useState(null);
   //returns all data for available stores
-  const { loading, stores, error } = useGetStoreData();
+  const { storeLoading, stores, storeError } = useGetStoreData();
   //sets options which will be passed as a parameter to the getGames hook
   const [options, setCurrentOptions] = useState({
     upperPrice: currentPrice === priceRange[1] ? null : currentPrice,
@@ -82,8 +82,8 @@ export default function OptionsMenu({ setOptions, setAllStores }) {
           onChange={handleStoreSelect}
         >
           <option value={0}>select a store</option>
-          {!loading &&
-            !error &&
+          {!storeLoading &&
+            !storeError &&
             stores.map(store => {
               return (
                 <option key={store.storeName} value={store.storeID}>

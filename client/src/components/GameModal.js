@@ -8,7 +8,7 @@ const timeConverter = time => {
 };
 
 export default function GameModal({ game, stores, setSelected }) {
-  const { data, loading, hasExtras } = useGetGameData(game);
+  const { gameData, gameDataLoading, hasExtras } = useGetGameData(game);
   const [mainContent, setMainContent] = useState(null);
   const [extraContent, setExtraContent] = useState(null);
   const [isShown, setIsShown] = useState(false);
@@ -17,13 +17,13 @@ export default function GameModal({ game, stores, setSelected }) {
   // which will always be available and extra content which will only be available for games
   // listed on steam
   useEffect(() => {
-    if (data && game) {
+    if (gameData && game) {
       setIsShown(true);
       setMainContent({
         title: game.title,
         image: game.thumb,
         mainStore: game.storeID,
-        deals: data.deals,
+        deals: gameData.deals,
         retail: game.normalPrice,
         salePrice: game.salePrice,
         savings: Math.floor(game.savings),
@@ -32,17 +32,17 @@ export default function GameModal({ game, stores, setSelected }) {
       });
       if (hasExtras) {
         setExtraContent({
-          desc: data.desc,
+          desc: gameData.desc,
           steamRating: game.steamRatingPercent,
           steamRatingText: game.steamRatingText,
           steamRatingCount: game.steamRatingCount,
-          mainVideo: data.video ? data.video.mp4.max : null,
-          backupVideo: data.video ? data.video.webm.max : null,
-          thumbnail: data.thumbnail
+          mainVideo: gameData.video ? gameData.video.mp4.max : null,
+          backupVideo: gameData.video ? gameData.video.webm.max : null,
+          thumbnail: gameData.thumbnail
         });
       }
     }
-  }, [data, loading, game, hasExtras]);
+  }, [gameData, gameDataLoading, game, hasExtras]);
 
   //closes modal and sets the current selected game to null
   const closeModal = () => {
@@ -76,7 +76,7 @@ export default function GameModal({ game, stores, setSelected }) {
 
   //checks to make sure there is a game selected, all data is resolved, whether the modal is visible,
   // and that mainContent has values
-  if (game && !loading && data && mainContent && isShown) {
+  if (game && !gameDataLoading && gameData && mainContent && isShown) {
     if (mainContent.deals) {
       return (
         <div className="modal-bg">
