@@ -13,33 +13,36 @@ export default function useGetWishlistGameData() {
   // takes wishlistids and makes a call up to cheapshark api to get corresponding game data.
   // takes the response and creates a game object containing all the necessary data
   // and adds that to an array, wishlist is then set to array
-  useEffect(async () => {
+  useEffect(() => {
     if (currentUser) {
       let controller = new AbortController();
-      try {
-        setWishlistError(null);
-        const wishlistIDs = await getUserWishlist(currentUser);
-        if (wishlistIDs) {
-          const idString = convertIDs(Object.values(wishlistIDs));
-          const res = await axios({
-            method: "GET",
-            url: `https://www.cheapshark.com/api/1.0/games?ids=${idString}`,
-            signal: controller.signal
-          });
-          let data = Object.values(res.data);
-          data = data.map((data, index) => ({
-            ...data.info,
-            ...data.deals[0],
-            gameID: wishlistIDs[index].game_id
-          }));
-          setWishlistData(data);
+      const fetchWishlistData = async () => {
+        try {
+          setWishlistError(null);
+          const wishlistIDs = await getUserWishlist(currentUser);
+          if (wishlistIDs) {
+            const idString = convertIDs(Object.values(wishlistIDs));
+            const res = await axios({
+              method: "GET",
+              url: `https://www.cheapshark.com/api/1.0/games?ids=${idString}`,
+              signal: controller.signal
+            });
+            let data = Object.values(res.data);
+            data = data.map((data, index) => ({
+              ...data.info,
+              ...data.deals[0],
+              gameID: wishlistIDs[index].game_id
+            }));
+            setWishlistData(data);
+          }
+          setWishlistLoading(false);
+        } catch (err) {
+          console.log(err.message);
+          setWishlistError(err.message);
+          setWishlistLoading(false);
         }
-        setWishlistLoading(false);
-      } catch (err) {
-        console.log(err.message);
-        setWishlistError(err.message);
-        setWishlistLoading(false);
       }
+      fetchWishlistData();
       return () => controller.abort();
     }
   }, [currentUser]);

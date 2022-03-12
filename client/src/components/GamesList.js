@@ -8,7 +8,6 @@ import Wishlist from "./Wishlist.js";
 export default function GamesList() {
   //options and stores set by the options menu
   const [options, setOptions] = useState(null);
-  const [stores, setStores] = useState(null);
   //tracks pagination
   const [pageNumber, setPageNumber] = useState(0);
   //search query
@@ -81,7 +80,7 @@ export default function GamesList() {
       </div>
         <Wishlist setSelected={setSelectedGame} />
       <div className="layout-btn-group">
-        <OptionsMenu setOptions={setOptions} setAllStores={setStores} />
+        <OptionsMenu setOptions={setOptions} />
         <button
           className={`btn ${isGrid ? "" : "isGrid"}`}
           onClick={() => setIsGrid(false)}
@@ -107,7 +106,6 @@ export default function GamesList() {
       </div>
       <GameModal
         game={selectedGame}
-        stores={stores}
         setSelected={setSelectedGame}
       />
     </div>

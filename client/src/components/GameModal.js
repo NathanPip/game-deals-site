@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from "react";
 import useGetGameData from "../hooks/useGetGameData.js";
+import { timeConverter } from "../helpers/helperFunctions.js";
+import { useGlobalState } from "../contexts/globalContext.js";
 
-//converts epoch time to Day Month Year format
-const timeConverter = time => {
-  let date = new Date(time * 1000);
-  return date.toDateString().substring(4);
-};
 
-export default function GameModal({ game, stores, setSelected }) {
+export default function GameModal({ game, setSelected }) {
   const { gameData, gameDataLoading, hasExtras } = useGetGameData(game);
   const [mainContent, setMainContent] = useState(null);
   const [extraContent, setExtraContent] = useState(null);
   const [isShown, setIsShown] = useState(false);
+  const {stores, storeLoading} = useGlobalState();
 
   // when all data is resolved split data into main content
   // which will always be available and extra content which will only be available for games
@@ -74,76 +72,76 @@ export default function GameModal({ game, stores, setSelected }) {
     });
   };
 
+  const displayModalContent = () => (
+    <div className="modal-card">
+      <button className="close-btn" onClick={closeModal}>
+        Close X
+      </button>
+      {/* contains the title and video / thumbnail of game */}
+      <div className="modal-head">
+        <h2 className="title">{mainContent.title}</h2>
+        {!hasExtras ? (
+          <img
+            className="image"
+            src={mainContent.image}
+            alt={`${mainContent.title} cover`}
+          />
+        ) : null}
+        {hasExtras ? (
+          <video
+            className="video"
+            poster={extraContent.thumbnail}
+            name="media"
+            controls
+          >
+            <source src={extraContent.mainVideo} type="video/mp4" />
+            <source src={extraContent.backupVideo} type="video/webm" />
+          </video>
+          ) : null}
+      </div>
+      {/* contains the reviews from both metacritic and steam, 
+                the release date as well as a description of the game if available */}
+      <div className="modal-main">
+        <div className="reviews">
+          {hasExtras && extraContent.steamRating ? (
+            <p
+              className="steam-reviews"
+              title={`${extraContent.steamRating}% of ${extraContent.steamRatingCount} players rated this game positively`}
+            >
+              <strong>Reviews: </strong>
+              {`${extraContent.steamRatingText} (${extraContent.steamRatingCount})`}
+            </p>
+          ) : null}
+          {mainContent.metacriticScore ? (
+            <p className="metacritic">
+              <strong>Metacritic Score: {mainContent.metacriticScore}</strong>
+            </p>
+          ) : null}
+        </div>
+        <p className="release-date">
+          <strong>release date:</strong> {mainContent.release}
+        </p>
+        {hasExtras ? (
+          <p className="desc">
+            <span className="desc-title">About The Game:</span>
+            {extraContent.desc}
+          </p>
+        ) : null}
+      </div>
+      {/* contains all of the available deals displayed in a list */}
+      <div className="modal-foot">
+        <h3>Deals</h3>
+        <ul className="deals-list">{mainContent.deals && !storeLoading ? displayDeals() : null}</ul>
+      </div>
+    </div>
+  );
+
   //checks to make sure there is a game selected, all data is resolved, whether the modal is visible,
   // and that mainContent has values
-  if (game && !gameDataLoading && gameData && mainContent && isShown) {
-    if (mainContent.deals) {
-      return (
-        <div className="modal-bg">
-          <div className="modal-card">
-            <button className="close-btn" onClick={closeModal}>
-              Close X
-            </button>
-            {/* contains the title and video / thumbnail of game */}
-            <div className="modal-head">
-              <h2 className="title">{mainContent.title}</h2>
-              {!hasExtras && <img className="image" src={mainContent.image} alt={`${mainContent.title} cover`}/>}
-              {hasExtras && (
-                <video
-                  className="video"
-                  poster={extraContent.thumbnail}
-                  name="media"
-                  controls
-                >
-                  <source src={extraContent.mainVideo} type="video/mp4"/>
-                  <source src={extraContent.backupVideo} type="video/webm"/>
-                  )}
-                </video>
-              )}
-            </div>
-            {/* contains the reviews from both metacritic and steam, 
-                the release date as well as a description of the game if available */}
-            <div className="modal-main">
-              <div className="reviews">
-                {hasExtras && (
-                  <p
-                    className="steam-reviews"
-                    title={`${extraContent.steamRating}% of ${extraContent.steamRatingCount} players rated this game positively`}
-                  >
-                    <strong>Reviews: </strong>
-                    {`${extraContent.steamRatingText} (${extraContent.steamRatingCount})`}
-                  </p>
-                )}
-                {mainContent.metacriticScore !== 0 && (
-                  <p className="metacritic">
-                    <strong>
-                      Metacritic Score: {mainContent.metacriticScore}
-                    </strong>
-                    
-                  </p>
-                )}
-              </div>
-              <p className="release-date">
-                <strong>release date:</strong> {mainContent.release}
-              </p>
-              {hasExtras && (
-                <p className="desc">
-                  <span className="desc-title">About The Game:</span>
-                  {extraContent.desc}
-                </p>
-              )}
-            </div>
-            {/* contains all of the available deals displayed in a list */}
-            <div className="modal-foot">
-              <h3>Deals</h3>
-              <ul className="deals-list">
-                {mainContent.deals && displayDeals()}
-              </ul>
-            </div>
-          </div>
-        </div>
-      );
-    }
+  if (isShown) {
+      return <div className="modal-bg">
+        {!gameDataLoading ? displayModalContent() : <p className="loading">loading</p>}
+      </div>;
   }
   //return null if the checks aren't met
   return null;

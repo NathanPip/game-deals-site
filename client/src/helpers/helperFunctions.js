@@ -32,3 +32,9 @@ export const filterGames = games => {
   }
   return filteredGames;
 };
+
+//converts epoch time to Day Month Year format
+export const timeConverter = time => {
+  let date = new Date(time * 1000);
+  return date.toDateString().substring(4);
+};

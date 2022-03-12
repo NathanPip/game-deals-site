@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from "react";
-import useGetStoreData from "../hooks/useGetStoreData.js";
+import { useGlobalState } from "../contexts/globalContext.js";
 
-export default function OptionsMenu({ setOptions, setAllStores }) {
+export default function OptionsMenu({ setOptions }) {
   //range values for sliders
   const [priceRange] = useState([0, 61]);
   const [ratingsRange] = useState([0, 100]);
   //current values of sliders
   const [currentPrice, setCurrentPrice] = useState(priceRange[1]);
   const [steamRating, setSteamRating] = useState(ratingsRange[0]);
-  //boolean for whether modal is hiding or visible
-  const [hiding, setHiding] = useState(true);
   //sets the current store to filter games by
   const [currentStore, setCurrentStore] = useState(null);
   //returns all data for available stores
-  const { storeLoading, stores, storeError } = useGetStoreData();
+  const { storeLoading, stores, storeError } = useGlobalState();
   //sets options which will be passed as a parameter to the getGames hook
   const [options, setCurrentOptions] = useState({
     upperPrice: currentPrice === priceRange[1] ? null : currentPrice,
@@ -31,15 +29,13 @@ export default function OptionsMenu({ setOptions, setAllStores }) {
   }, [options, setOptions]);
 
   //sets store values in gameslist when store data is resolved
-  useEffect(() => {
-    setAllStores(stores);
-  }, [stores, setAllStores]);
   //handles when the price slider is changed
   const handlePriceChange = e => {
     setCurrentPrice(e.target.value);
     setCurrentOptions(prevOptions => ({
       ...prevOptions,
-      upperPrice: parseInt(e.target.value) >= priceRange[1] - 1 ? null : e.target.value
+      upperPrice:
+        parseInt(e.target.value) >= priceRange[1] - 1 ? null : e.target.value
     }));
   };
   //handles when the review slider is changed
@@ -52,25 +48,13 @@ export default function OptionsMenu({ setOptions, setAllStores }) {
   };
   //handles when the store select menu has a new value selected
   const handleStoreSelect = e => {
-      setCurrentStore(e.target.value);
-      setCurrentOptions(prevOptions => ({
-        ...prevOptions,
-        storeID: e.target.value === '0' ? null : e.target.value
-      }));
+    setCurrentStore(e.target.value);
+    setCurrentOptions(prevOptions => ({
+      ...prevOptions,
+      storeID: e.target.value === "0" ? null : e.target.value
+    }));
   };
-  //toggles hiding
-  const toggleHide = () => {
-    setHiding(prev => !prev);
-  };
-  //if options are hiding then display show button
-  // if (hiding) {
-  //   return (
-  //     <button className="filter-button" onClick={toggleHide}>
-  //       Filter
-  //     </button>
-  //   );
-  // }
-  //if not hiding then display filter options
+
   return (
     <div className="options-menu">
       <div className="options-item">
@@ -111,9 +95,7 @@ export default function OptionsMenu({ setOptions, setAllStores }) {
             steps={1}
             onChange={handlePriceChange}
           ></input>
-          <span className="range-minmax">
-            ${priceRange[1]}
-          </span>
+          <span className="range-minmax">${priceRange[1]}</span>
         </div>
       </div>
 

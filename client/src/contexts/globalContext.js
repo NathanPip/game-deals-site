@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import useGetWishlistGameData from "../hooks/useGetWishlistGameData";
+import useGetStoreData from "../hooks/useGetStoreData";
 
 const GlobalContext = React.createContext();
 
@@ -11,6 +12,7 @@ export function useGlobalState() {
 export function GlobalStateProvider({ children }) {
   const [wishlist, setWishlist] = useState([]);
   const {wishlistLoading, wishlistError, wishlistData} = useGetWishlistGameData();
+  const { storeLoading, stores, storeError } = useGetStoreData();
 
   useEffect(()=>{
     if(wishlistData && !wishlistError)
@@ -21,7 +23,10 @@ export function GlobalStateProvider({ children }) {
     wishlist,
     setWishlist,
     wishlistLoading,
-    wishlistError
+    wishlistError,
+    stores,
+    storeLoading, 
+    storeError
   };
   return (
     <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>
