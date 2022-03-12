@@ -48,15 +48,15 @@
   }
   .wishlist-add-btn {
     text-align: center;
-    padding: .5em;
+    padding: 0.5em;
     background: $primary-color;
     border: 1px solid $theme-color;
-    border-radius: .5em;
+    border-radius: 0.5em;
     color: $theme-color;
-    margin-right: .5em;
-    transition: .25s ease-in-out background, .25s ease-in-out color;
+    margin-right: 0.5em;
+    transition: 0.25s ease-in-out background, 0.25s ease-in-out color;
     &:hover {
-      background: rgba($theme-color, .2);
+      background: rgba($theme-color, 0.2);
       color: $secondary-color;
       cursor: pointer;
     }
@@ -71,13 +71,13 @@
     padding: 0;
     min-height: 20em;
     border: 3px solid $theme-color;
-    border-radius: .5em;
+    border-radius: 0.5em;
     .item-head {
       flex-direction: column;
       justify-content: flex-start;
       text-align: center;
       border-bottom: 2px solid $theme-color;
-      height: 60%;
+      height: 15em;
       padding: 0.5em;
     }
     .item-foot {
@@ -90,6 +90,10 @@
       margin-top: 0.5em;
       font-size: 1.25em;
       width: 100%;
+    }
+    .wishlist-add-btn {
+      margin-right: auto;
+      margin-top: auto;
     }
     .item-img {
       width: 100%;

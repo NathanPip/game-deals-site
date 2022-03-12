@@ -198,7 +198,7 @@ h1, h2, h3, h4, h5 {
   justify-content: flex-start;
   text-align: center;
   border-bottom: 2px solid #6f2dbd;
-  height: 60%;
+  height: 15em;
   padding: 0.5em;
 }
 .list-item.card .item-foot {
@@ -211,6 +211,10 @@ h1, h2, h3, h4, h5 {
   margin-top: 0.5em;
   font-size: 1.25em;
   width: 100%;
+}
+.list-item.card .wishlist-add-btn {
+  margin-right: auto;
+  margin-top: auto;
 }
 .list-item.card .item-img {
   width: 100%;
@@ -243,7 +247,7 @@ header {
   align-items: center;
   position: relative;
   justify-content: center;
-  margin: 0 auto;
+  margin: 4em auto 3em auto;
   margin-top: 4em;
   width: 100%;
   max-width: 1300px;

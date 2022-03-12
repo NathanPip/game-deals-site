@@ -1,7 +1,10 @@
 import React from "react";
 import { useAuth } from "../contexts/authContext";
 import { useGlobalState } from "../contexts/globalContext";
-import { addGameToWishlist, deleteGameFromWishlist } from "../helpers/wishlistAPIFunctions";
+import {
+  addGameToWishlist,
+  deleteGameFromWishlist
+} from "../helpers/wishlistAPIFunctions";
 
 //gets game data from games list
 export default function GamesListItem({
@@ -10,8 +13,7 @@ export default function GamesListItem({
   isCard,
   isWishlist
 }) {
-  
-  const {setWishlist, wishlist} = useGlobalState();
+  const { setWishlist, wishlist } = useGlobalState();
   const { currentUser } = useAuth();
 
   async function addToWishlist(e) {
@@ -35,6 +37,12 @@ export default function GamesListItem({
             alt={`${game.title} cover`}
           />
           <h2 className="item-title">{game.title}</h2>
+          <button
+            className="wishlist-add-btn"
+            onClick={isWishlist ? removeFromWishlist : addToWishlist}
+          >
+            {isWishlist ? "Remove From Wishlist" : "Add to wishlist"}
+          </button>
         </div>
         <div className="item-foot">
           <p className="item-original">
@@ -72,7 +80,7 @@ export default function GamesListItem({
             className="wishlist-add-btn"
             onClick={isWishlist ? removeFromWishlist : addToWishlist}
           >
-          {isWishlist ? '-' : '+'}
+            {isWishlist ? "-" : "+"}
           </button>
           <p className="item-price">
             {Math.round(game.savings) !== 0 && (

@@ -78,7 +78,7 @@ export default function GamesList() {
           placeholder="search for a game"
         ></input>
       </div>
-        <Wishlist setSelected={setSelectedGame} />
+      <Wishlist setSelected={setSelectedGame} />
       <div className="layout-btn-group">
         <OptionsMenu setOptions={setOptions} />
         <button
@@ -104,10 +104,7 @@ export default function GamesList() {
         {displayGames()}
         <p className="loading">{gamesListLoading && "Loading..."}</p>
       </div>
-      <GameModal
-        game={selectedGame}
-        setSelected={setSelectedGame}
-      />
+      <GameModal game={selectedGame} setSelected={setSelectedGame} />
     </div>
   );
 }

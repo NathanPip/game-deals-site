@@ -6,8 +6,7 @@ header {
   align-items: center;
   position: relative;
   justify-content: center;
-//   height: 10em;
-  margin: 0 auto;
+  margin: 4em auto 3em auto;
   margin-top: 4em;
   width: 100%;
   max-width: 1300px;
@@ -24,8 +23,8 @@ header {
     margin-right: auto;
     .user-email {
       margin: 0;
-      margin-left: .5em;
-      font-size: .9em;
+      margin-left: 0.5em;
+      font-size: 0.9em;
     }
   }
   .form-btn {
@@ -34,8 +33,8 @@ header {
     color: $secondary-color;
     border: none;
     border-radius: 0.25em;
-    margin: .75em 0 .75em 0.5em;
-    transition: .2s ease-in-out background;
+    margin: 0.75em 0 0.75em 0.5em;
+    transition: 0.2s ease-in-out background;
     &:hover {
       background: rgba($theme-color-light, 0.8);
       cursor: pointer;

@@ -16,10 +16,10 @@ export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
   const { signup, login } = useAuth();
 
   //loading and error states for login and signup requests
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [accountError, setAccountError] = useState("");
+  const [accountLoading, setAccountLoading] = useState(false);
 
-  const {postUserProfile, getUserWishlist} = useGlobalState();
+  const { postUserProfile } = useGlobalState();
 
   //handles signup - checks for valid email input as well as if both passwords entered match and calls the signup function when both conditions are met
   async function handleSignupSubmit(e) {
@@ -28,15 +28,12 @@ export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
     if (
       signupPasswordRef.current.value !== signupPasswordConfirmRef.current.value
     ) {
-      return setError("Passwords do not match");
-    }
-    if (!signupEmailRef.current.value.includes("@")) {
-      return setError("Must be a valid email address");
+      return setAccountError("Passwords do not match");
     }
 
     try {
-      setError("");
-      setLoading(true);
+      setAccountError("");
+      setAccountLoading(true);
       const sign = await signup(
         signupEmailRef.current.value,
         signupPasswordRef.current.value
@@ -44,35 +41,49 @@ export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
       await postUserProfile(sign.user);
       handleCloseModal();
     } catch (err) {
-      setError("failed to create account");
+      if (err.code === "auth/email-already-in-use") {
+        const email = signupEmailRef.current.value;
+        setType("login");
+        loginEmailRef.current.value = email;
+        loginPasswordRef.current.value = "";
+        setAccountError("Email already in use, please login");
+      }
     } finally {
-      setLoading(false);
+      setAccountLoading(false);
     }
   }
 
   //handles login - calls the login function with email and password entered
   async function handleLoginSubmit(e) {
     e.preventDefault();
-
+    const emailRef = loginEmailRef.current.value;
+    const passwordRef = loginPasswordRef.current.value;
+    if (!emailRef || !passwordRef) {
+      return setAccountError("please enter an email and password");
+    }
     try {
-      setError("");
-      setLoading(true);
-      const log = await login(
-        loginEmailRef.current.value,
-        loginPasswordRef.current.value
-      );
+      setAccountError("");
+      setAccountLoading(true);
+      await login(emailRef, passwordRef);
       handleCloseModal();
-    } catch {
-      setError("failed to login");
+    } catch (err) {
+      console.log(err.code);
+      if (err.code === "auth/wrong-password") {
+        setAccountError("incorrect password");
+        loginPasswordRef.current.value = "";
+      }
+      if (err.code === "auth/user-not-found") {
+        setAccountError("user does not exist with that email");
+      }
     } finally {
-      setLoading(false);
+      setAccountLoading(false);
     }
   }
   //closes the modal and sets error back to default value
   function handleCloseModal() {
     setIsOpen(false);
-    setError("");
-    setLoading(false);
+    setAccountError("");
+    setAccountLoading(false);
   }
 
   //the login form that is rendered if modal state is in login
@@ -83,7 +94,7 @@ export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
       </button>
 
       <h2 className="modal-title">Login</h2>
-      {error ? <p className="alert">{error}</p> : null}
+      {accountError ? <p className="alert">{accountError}</p> : null}
       <form className="account-form login" onSubmit={handleLoginSubmit}>
         <label htmlFor="email">Email</label>
         <input
@@ -103,10 +114,10 @@ export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
           placeholder="password"
           ref={loginPasswordRef}
         ></input>
-
-        <button className="form-btn" id="forgot-btn" type="submit">
+        {/* forgot password support incoming */}
+        {/* <button className="form-btn" id="forgot-btn" type="submit">
           Forgot Password
-        </button>
+        </button> */}
 
         <button className="form-submit-btn" id="login-btn" type="submit">
           Login
@@ -126,7 +137,7 @@ export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
         Close
       </button>
       <h2 className="modal-title">Sign Up</h2>
-      {error ? <p className="alert">{error}</p> : null}
+      {accountError ? <p className="alert">{accountError}</p> : null}
       <form className="account-form signup" onSubmit={handleSignupSubmit}>
         <label htmlFor="email">Email</label>
         <input
@@ -156,7 +167,7 @@ export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
         ></input>
 
         <button
-          disabled={loading}
+          disabled={accountLoading}
           className="form-submit-btn"
           id="signup-btn"
           type="submit"
@@ -175,14 +186,10 @@ export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
   function renderAccountForm() {
     if (type === "signup") {
       return signupForm;
-    } else {
-      return loginForm;
     }
+    return loginForm;
   }
   //if the modal is open render the modal else render nothing
-  if (isOpen) {
-    return <div className="account-modal">{renderAccountForm()}</div>;
-  } else {
-    return null;
-  }
+  if (isOpen) return <div className="account-modal">{renderAccountForm()}</div>;
+  return null;
 }
