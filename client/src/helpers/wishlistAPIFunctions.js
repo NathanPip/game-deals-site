@@ -28,12 +28,14 @@ export async function postUserProfile(user) {
   //checks to make sure game is not already in wishlist then makes a post request up to api and adds game to database
   //doing checks on client side so a request is not made everytime a user clicks add button
  export async function addGameToWishlist(game, user, setWishlist, wishlist) {
-    try {
-      for (let item in wishlist) {
-        if (wishlist[item].title === game.title) {
-          return null;
-        }
+   if(!user)
+    return 'no-user'
+    for (let item in wishlist) {
+      if (wishlist[item].title === game.title) {
+        return 'in-wishlist';
       }
+    }
+    try {
       setWishlist(prev => [...prev, game]);
       const res = await axios.post("/user/games", {
         uid: user.uid,
@@ -43,7 +45,7 @@ export async function postUserProfile(user) {
       return res;
     } catch (err) {
       console.log(err);
-      return null;
+      return 400;
     }
   }
 

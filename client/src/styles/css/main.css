@@ -1,4 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;1,300;1,400&display=swap");
+@keyframes fade-in-out {
+  0% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 * {
   box-sizing: border-box;
 }
@@ -44,6 +58,7 @@ h1, h2, h3, h4, h5 {
 
 .games-list {
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
@@ -335,9 +350,9 @@ header .form-btn:hover {
 }
 
 .wishlist {
+  background: rgba(128, 50, 216, 0.5);
   display: flex;
   flex-direction: column;
-  border: 2px solid #6f2dbd;
   padding: 0.25em;
   margin: 0.5em 0;
   max-height: 600px;
@@ -348,10 +363,10 @@ header .form-btn:hover {
   /* Handle on hover */
 }
 .wishlist .wishlist-title {
-  text-align: center;
+  color: #eee;
   font-weight: 300;
   margin-bottom: 0.5em;
-  color: #6f2dbd;
+  text-align: center;
 }
 .wishlist .alert-text {
   text-align: center;
@@ -375,10 +390,10 @@ header .form-btn:hover {
 .wishlist-button {
   font-size: 1.25em;
   margin: 0.5em 0;
-  color: #6f2dbd;
+  color: #eee;
   width: 100%;
-  background: transparent;
-  padding: 0.25em 0;
+  background: rgba(128, 50, 216, 0.5);
+  padding: 0.75em 0;
   border: none;
   border: 1px solid #6f2dbd;
   transition: 0.25s ease-in-out;
@@ -528,10 +543,12 @@ header .form-btn:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
   background: rgba(22, 22, 22, 0.2);
 }
 .account-modal .modal-body {
   min-height: 400px;
+  max-width: 400px;
   padding: 2em;
   padding-bottom: 3em;
   border: 2px solid #8032d8;
@@ -540,6 +557,9 @@ header .form-btn:hover {
   flex-direction: column;
   align-items: center;
   background: #161616;
+}
+.account-modal .account-alert {
+  text-align: center;
 }
 .account-modal .form-btn {
   font-size: 0.65em;
@@ -599,6 +619,22 @@ header .form-btn:hover {
 .account-modal .form-submit-btn:hover {
   cursor: pointer;
   background: rgba(128, 50, 216, 0.8);
+}
+
+.alert {
+  position: fixed;
+  margin: 50vh auto 0;
+  transform: translateY(-50vh);
+  color: #8032d8;
+  background: rgba(238, 238, 238, 0.9);
+  font-size: 1.15em;
+  padding: 0.35em;
+  border: 2px solid #161616;
+  border-radius: 0.5em;
+  opacity: 0;
+}
+.alert.fade-in-out {
+  animation: fade-in-out 4s forwards;
 }
 
 /*# sourceMappingURL=main.css.map */

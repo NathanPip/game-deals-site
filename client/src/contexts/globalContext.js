@@ -12,6 +12,7 @@ export function useGlobalState() {
 export function GlobalStateProvider({ children }) {
   const [wishlist, setWishlist] = useState([]);
   const {wishlistLoading, wishlistError, wishlistData} = useGetWishlistGameData();
+  const [alert, setAlert] = useState('');
   const { storeLoading, stores, storeError } = useGetStoreData();
 
   useEffect(()=>{
@@ -26,7 +27,9 @@ export function GlobalStateProvider({ children }) {
     wishlistError,
     stores,
     storeLoading, 
-    storeError
+    storeError,
+    alert,
+    setAlert
   };
   return (
     <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>

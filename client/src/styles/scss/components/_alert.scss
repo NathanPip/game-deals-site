@@ -1,0 +1,17 @@
+@use "../abstracts" as *;
+
+.alert {
+  position: fixed;
+  margin: 50vh auto 0;
+  transform: translateY(-50vh);
+  color: $theme-color-light;
+  background: rgba($secondary-color, .9);
+  font-size: 1.15em;
+  padding: .35em;
+  border: 2px solid $primary-color;
+  border-radius: .5em;
+  opacity: 0;
+  &.fade-in-out {
+      animation: fade-in-out 4s forwards; 
+  }
+}

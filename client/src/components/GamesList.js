@@ -4,6 +4,8 @@ import GameModal from "./GameModal.js";
 import OptionsMenu from "./OptionsMenu";
 import useGetGames from "../hooks/useGetGames.js";
 import Wishlist from "./Wishlist.js";
+import Alert from "./Alert.jsx";
+import { useGlobalState } from "../contexts/globalContext.js";
 
 export default function GamesList() {
   //options and stores set by the options menu
@@ -21,6 +23,7 @@ export default function GamesList() {
   //call returns game deals based on options and query, returns deals sorted by deal rating by default
   const { gamesListLoading, games } = useGetGames(options, query, pageNumber);
 
+  const {alert} = useGlobalState();
   //handles the observation to signal when to fire another api call for another page
   //currently set to view a specific list item and fire when that list item is visible
   const observer = useRef();
@@ -105,6 +108,7 @@ export default function GamesList() {
         <p className="loading">{gamesListLoading && "Loading..."}</p>
       </div>
       <GameModal game={selectedGame} setSelected={setSelectedGame} />
+      <Alert alert={alert}/>
     </div>
   );
 }

@@ -21,6 +21,12 @@ export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
 
   const { postUserProfile } = useGlobalState();
 
+  function handleCloseModal() {
+    setIsOpen(false);
+    setAccountError("");
+    setAccountLoading(false);
+  }
+
   //handles signup - checks for valid email input as well as if both passwords entered match and calls the signup function when both conditions are met
   async function handleSignupSubmit(e) {
     e.preventDefault();
@@ -46,7 +52,7 @@ export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
         setType("login");
         loginEmailRef.current.value = email;
         loginPasswordRef.current.value = "";
-        setAccountError("Email already in use, please login");
+        setAccountError("Email already in use please login");
       }
     } finally {
       setAccountLoading(false);
@@ -80,11 +86,6 @@ export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
     }
   }
   //closes the modal and sets error back to default value
-  function handleCloseModal() {
-    setIsOpen(false);
-    setAccountError("");
-    setAccountLoading(false);
-  }
 
   //the login form that is rendered if modal state is in login
   const loginForm = (
@@ -94,7 +95,7 @@ export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
       </button>
 
       <h2 className="modal-title">Login</h2>
-      {accountError ? <p className="alert">{accountError}</p> : null}
+      {accountError ? <p className="account-alert">{accountError}</p> : null}
       <form className="account-form login" onSubmit={handleLoginSubmit}>
         <label htmlFor="email">Email</label>
         <input
@@ -137,7 +138,7 @@ export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
         Close
       </button>
       <h2 className="modal-title">Sign Up</h2>
-      {accountError ? <p className="alert">{accountError}</p> : null}
+      {accountError ? <p className="account-alert">{accountError}</p> : null}
       <form className="account-form signup" onSubmit={handleSignupSubmit}>
         <label htmlFor="email">Email</label>
         <input

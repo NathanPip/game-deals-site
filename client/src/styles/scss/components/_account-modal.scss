@@ -9,9 +9,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
   background: rgba($primary-color, 0.2);
   .modal-body {
     min-height: 400px;
+    max-width: 400px;
     padding: 2em;
     padding-bottom: 3em;
     border: 2px solid $theme-color-light;
@@ -20,6 +22,9 @@
     flex-direction: column;
     align-items: center;
     background: $primary-color;
+  }
+  .account-alert {
+    text-align: center;
   }
   .form-btn {
     font-size: 0.65em;

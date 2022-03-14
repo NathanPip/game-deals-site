@@ -13,12 +13,19 @@ export default function GamesListItem({
   isCard,
   isWishlist
 }) {
-  const { setWishlist, wishlist } = useGlobalState();
+  const { setWishlist, wishlist, setAlert } = useGlobalState();
   const { currentUser } = useAuth();
 
   async function addToWishlist(e) {
     e.stopPropagation();
-    await addGameToWishlist(game, currentUser, setWishlist, wishlist);
+    const addGameRes = await addGameToWishlist(
+      game,
+      currentUser,
+      setWishlist,
+      wishlist
+    );
+    if (addGameRes === "in-wishlist") setAlert("game already in wishlist");
+    if(addGameRes === "no-user") setAlert("must be signed in");
   }
 
   async function removeFromWishlist(e) {

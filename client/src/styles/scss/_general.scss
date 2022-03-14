@@ -1,5 +1,4 @@
-@use "./abstracts/variables" as *;
-@use "./abstracts/mixins" as m;
+@use "./abstracts" as *;
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;1,300;1,400&display=swap');
 
 * {
@@ -9,12 +8,13 @@
 body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.25;
+    // background: linear-gradient(135deg, $primary-color, $secondary-color);
     background: $primary-color;
     color: $secondary-color;
-    @include m.breakpoint($medium) {
+    @include breakpoint($medium) {
         font-size: 1.1rem;
     }
-    @include m.breakpoint($large) {
+    @include breakpoint($large) {
         font-size: 1.2rem;
     }
 }
