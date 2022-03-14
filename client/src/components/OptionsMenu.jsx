@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useGlobalState } from "../contexts/globalContext.js";
+import { useGlobalState } from "../contexts/globalContext.jsx";
 
 export default function OptionsMenu({ setOptions }) {
   //range values for sliders

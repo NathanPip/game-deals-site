@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useRef } from "react";
-import { useGlobalState } from "../contexts/globalContext";
+import { useGlobalState } from "../contexts/globalContext.jsx";
 
 export default function Alert({ alert }) {
   const alertRef = useRef();

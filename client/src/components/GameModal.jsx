@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import useGetGameData from "../hooks/useGetGameData.js";
 import { timeConverter } from "../helpers/helperFunctions.js";
-import { useGlobalState } from "../contexts/globalContext.js";
+import { useGlobalState } from "../contexts/globalContext.jsx";
 
 
 export default function GameModal({ game, setSelected }) {

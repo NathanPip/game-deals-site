@@ -1,6 +1,6 @@
 import React from "react";
-import { useAuth } from "../contexts/authContext";
-import { useGlobalState } from "../contexts/globalContext";
+import { useAuth } from "../contexts/authContext.jsx";
+import { useGlobalState } from "../contexts/globalContext.jsx";
 import {
   addGameToWishlist,
   deleteGameFromWishlist

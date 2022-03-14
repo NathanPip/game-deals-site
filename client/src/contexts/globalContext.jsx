@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
-import useGetWishlistGameData from "../hooks/useGetWishlistGameData";
-import useGetStoreData from "../hooks/useGetStoreData";
+import useGetWishlistGameData from "../hooks/useGetWishlistGameData.js";
+import useGetStoreData from "../hooks/useGetStoreData.js";
 
 const GlobalContext = React.createContext();
 

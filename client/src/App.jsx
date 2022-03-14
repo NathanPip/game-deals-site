@@ -1,7 +1,7 @@
-import Header from "./components/Header.js";
-import GamesList from "./components/GamesList.js";
-import { AuthProvider } from "./contexts/authContext.js";
-import { GlobalStateProvider } from "./contexts/globalContext.js";
+import Header from "./components/Header.jsx";
+import GamesList from "./components/GamesList.jsx";
+import { AuthProvider } from "./contexts/authContext.jsx";
+import { GlobalStateProvider } from "./contexts/globalContext.jsx";
 
 function App() {
   return (

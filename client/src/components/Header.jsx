@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import AccountModal from "./AccountModal";
-import { useAuth } from "../contexts/authContext";
-import { useGlobalState } from "../contexts/globalContext";
+import AccountModal from "./AccountModal.jsx";
+import { useAuth } from "../contexts/authContext.jsx";
+import { useGlobalState } from "../contexts/globalContext.jsx";
 
 export default function Header() {
   const [modalOpen, setModalOpen] = useState(false);

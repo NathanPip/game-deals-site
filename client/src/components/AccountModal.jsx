@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
-import { useAuth } from "../contexts/authContext";
-import { useGlobalState } from "../contexts/globalContext";
+import { useAuth } from "../contexts/authContext.jsx";
+import { useGlobalState } from "../contexts/globalContext.jsx";
+import { postUserProfile } from "../helpers/wishlistAPIFunctions.js";
 
 export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
   //login field references
@@ -18,8 +19,6 @@ export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
   //loading and error states for login and signup requests
   const [accountError, setAccountError] = useState("");
   const [accountLoading, setAccountLoading] = useState(false);
-
-  const { postUserProfile } = useGlobalState();
 
   function handleCloseModal() {
     setIsOpen(false);
@@ -53,7 +52,10 @@ export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
         loginEmailRef.current.value = email;
         loginPasswordRef.current.value = "";
         setAccountError("Email already in use please login");
+        return;
       }
+      console.log(err);
+      return setAccountError("failed to signup");
     } finally {
       setAccountLoading(false);
     }
@@ -77,10 +79,13 @@ export default function AccountModal({ type, isOpen, setIsOpen, setType }) {
       if (err.code === "auth/wrong-password") {
         setAccountError("incorrect password");
         loginPasswordRef.current.value = "";
+        return;
       }
       if (err.code === "auth/user-not-found") {
         setAccountError("user does not exist with that email");
+        return;
       }
+      return setAccountError("user does not exist with that email");
     } finally {
       setAccountLoading(false);
     }

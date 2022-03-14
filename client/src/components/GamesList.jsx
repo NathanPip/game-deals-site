@@ -1,11 +1,11 @@
 import React, { useState, useRef, useCallback } from "react";
-import GamesListItem from "./GamesListItem.js";
-import GameModal from "./GameModal.js";
-import OptionsMenu from "./OptionsMenu";
+import GamesListItem from "./GamesListItem.jsx";
+import GameModal from "./GameModal.jsx";
+import OptionsMenu from "./OptionsMenu.jsx";
 import useGetGames from "../hooks/useGetGames.js";
-import Wishlist from "./Wishlist.js";
+import Wishlist from "./Wishlist.jsx";
 import Alert from "./Alert.jsx";
-import { useGlobalState } from "../contexts/globalContext.js";
+import { useGlobalState } from "../contexts/globalContext.jsx";
 
 export default function GamesList() {
   //options and stores set by the options menu
