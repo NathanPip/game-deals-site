@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import useGetGameData from "../hooks/useGetGameData.js";
 import { timeConverter } from "../helpers/helperFunctions.js";
 import { useGlobalState } from "../contexts/globalContext.js";
@@ -10,6 +10,7 @@ export default function GameModal({ game, setSelected }) {
   const [extraContent, setExtraContent] = useState(null);
   const [isShown, setIsShown] = useState(false);
   const {stores, storeLoading} = useGlobalState();
+  const videoRef = useRef();
 
   // when all data is resolved split data into main content
   // which will always be available and extra content which will only be available for games
@@ -29,6 +30,7 @@ export default function GameModal({ game, setSelected }) {
         metacriticScore: game.metacriticScore
       });
       if (hasExtras) {
+        if(videoRef.current) videoRef.current.volume = .2;
         setExtraContent({
           desc: gameData.desc,
           steamRating: game.steamRatingPercent,
@@ -91,11 +93,15 @@ export default function GameModal({ game, setSelected }) {
           <video
             className="video"
             poster={extraContent.thumbnail}
+            src={extraContent.backupVideo}
+            type="video/webm"
             name="media"
             controls
+            autoPlay
+            ref={videoRef}
           >
-            <source src={extraContent.mainVideo} type="video/mp4" />
-            <source src={extraContent.backupVideo} type="video/webm" />
+            {/* <source src={extraContent.backupVideo} type="video/webm" />
+            <source src={extraContent.mainVideo} type="video/mp4" /> */}
           </video>
           ) : null}
       </div>
