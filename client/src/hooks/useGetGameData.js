@@ -29,20 +29,9 @@ export default function useGetGameData(game) {
             url: `/steamData?steamID=${game.steamAppID}`,
             signal: controller.signal
           });
+          console.log(res.data);
           const data = res.data;
-          const details = data[game.steamAppID].data;
-          setGameData(prev => ({
-            ...prev,
-            thumbnail: details.header_image
-          }));
-          if (details.short_description)
-            setGameData(prev => ({
-              ...prev,
-              desc: details.short_description
-            }));
-          if (details.movies) {
-            setGameData(prev => ({ ...prev, video: details.movies[0] }));
-          }
+          setGameData(prev => ({...prev, ...data}));
           setSteamLoading(false);
           if (!gameLoading) setGameDataLoading(false);
         } catch (err) {

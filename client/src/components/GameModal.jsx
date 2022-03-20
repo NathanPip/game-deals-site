@@ -58,6 +58,7 @@ export default function GameModal({ game, setSelected }) {
         <a
           key={deal.storeID}
           href={`https://www.cheapshark.com/redirect?dealID=${deal.dealID}`}
+          target = "_blank"
         >
           <li key={currentStore[0].storeName} className="deal-item">
             <p>
@@ -100,8 +101,6 @@ export default function GameModal({ game, setSelected }) {
             autoPlay
             ref={videoRef}
           >
-            {/* <source src={extraContent.backupVideo} type="video/webm" />
-            <source src={extraContent.mainVideo} type="video/mp4" /> */}
           </video>
           ) : null}
       </div>
