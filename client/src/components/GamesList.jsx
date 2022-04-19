@@ -3,7 +3,6 @@ import GamesListItem from "./GamesListItem.jsx";
 import GameModal from "./GameModal.jsx";
 import OptionsMenu from "./OptionsMenu.jsx";
 import useGetGames from "../hooks/useGetGames.js";
-import Wishlist from "./Wishlist.jsx";
 import Alert from "./Alert.jsx";
 import { useGlobalState } from "../contexts/globalContext.jsx";
 
@@ -18,22 +17,23 @@ export default function GamesList() {
   const [noScroll] = useState(false);
   //boolean for layout of games least either grid or list
   const [isGrid, setIsGrid] = useState(false);
-  //the game taht will be displayed in the modal
-  const [selectedGame, setSelectedGame] = useState(null);
+
   //call returns game deals based on options and query, returns deals sorted by deal rating by default
   const { gamesListLoading, games } = useGetGames(options, query, pageNumber);
 
-  const {alert} = useGlobalState();
+  let searchTimeout;
+
+  const { alert, selectedGame, setSelectedGame } = useGlobalState();
   //handles the observation to signal when to fire another api call for another page
   //currently set to view a specific list item and fire when that list item is visible
   const observer = useRef();
   const handleObservation = useCallback(
-    node => {
+    (node) => {
       if (gamesListLoading || noScroll) return;
       if (observer.current) observer.current.disconnect();
-      observer.current = new IntersectionObserver(entries => {
+      observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
-          setPageNumber(prev => prev + 1);
+          setPageNumber((prev) => prev + 1);
         }
       });
       if (node) observer.current.observe(node);
@@ -41,9 +41,16 @@ export default function GamesList() {
     [gamesListLoading, noScroll]
   );
   //handles search query
-  const handleSearch = e => {
+  const handleSearch = (e) => {
+    clearTimeout(searchTimeout);
     setQuery(e.target.value !== "" ? e.target.value : null);
     setPageNumber(0);
+    searchTimeout = setTimeout(() => {
+      if (games.length === 0) {
+        setQuery(e.target.value !== "" ? e.target.value : null);
+        setPageNumber(0);
+      }
+    }, 500);
   };
 
   const displayGames = () => {
@@ -81,7 +88,7 @@ export default function GamesList() {
           placeholder="search for a game"
         ></input>
       </div>
-      <Wishlist setSelected={setSelectedGame} />
+
       <div className="layout-btn-group">
         <OptionsMenu setOptions={setOptions} />
         <button
@@ -104,11 +111,15 @@ export default function GamesList() {
         </button>
       </div>
       <div className={`games ${isGrid ? "grid" : ""}`}>
-        {displayGames()}
         <p className="loading">{gamesListLoading && "Loading..."}</p>
+        {games.length ? (
+          displayGames()
+        ) : (
+          <p className="loading">{!gamesListLoading && "No Games Found"}</p>
+        )}
       </div>
       <GameModal game={selectedGame} setSelected={setSelectedGame} />
-      <Alert alert={alert}/>
+      <Alert alert={alert} />
     </div>
   );
 }

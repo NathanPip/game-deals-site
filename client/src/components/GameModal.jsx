@@ -3,13 +3,12 @@ import useGetGameData from "../hooks/useGetGameData.js";
 import { timeConverter } from "../helpers/helperFunctions.js";
 import { useGlobalState } from "../contexts/globalContext.jsx";
 
-
 export default function GameModal({ game, setSelected }) {
   const { gameData, gameDataLoading, hasExtras } = useGetGameData(game);
   const [mainContent, setMainContent] = useState(null);
   const [extraContent, setExtraContent] = useState(null);
   const [isShown, setIsShown] = useState(false);
-  const {stores, storeLoading} = useGlobalState();
+  const { stores, storeLoading } = useGlobalState();
   const videoRef = useRef();
 
   // when all data is resolved split data into main content
@@ -30,14 +29,13 @@ export default function GameModal({ game, setSelected }) {
         metacriticScore: game.metacriticScore
       });
       if (hasExtras) {
-        if(videoRef.current) videoRef.current.volume = .2;
+        if (videoRef.current) videoRef.current.volume = 0.2;
         setExtraContent({
           desc: gameData.desc,
           steamRating: game.steamRatingPercent,
           steamRatingText: game.steamRatingText,
           steamRatingCount: game.steamRatingCount,
-          mainVideo: gameData.video ? gameData.video.mp4.max : null,
-          backupVideo: gameData.video ? gameData.video.webm.max : null,
+          mainVideo: gameData.video ? gameData.video.webm.max : null,
           thumbnail: gameData.thumbnail
         });
       }
@@ -55,12 +53,12 @@ export default function GameModal({ game, setSelected }) {
     return mainContent.deals.map(deal => {
       let currentStore = stores.filter(store => store.storeID === deal.storeID);
       return (
-        <a
-          key={deal.storeID}
-          href={`https://www.cheapshark.com/redirect?dealID=${deal.dealID}`}
-          target = "_blank"
-        >
-          <li key={currentStore[0].storeName} className="deal-item">
+        <li key={currentStore[0].storeName} className="deal-item">
+          <a
+            key={deal.storeID}
+            href={`https://www.cheapshark.com/redirect?dealID=${deal.dealID}`}
+            target="_blank"
+          >
             <p>
               <img
                 src={`https://www.cheapshark.com${currentStore[0].images.icon}`}
@@ -69,8 +67,8 @@ export default function GameModal({ game, setSelected }) {
               {currentStore[0].storeName}
             </p>
             <p>${deal.price}</p>
-          </li>
-        </a>
+          </a>
+        </li>
       );
     });
   };
@@ -94,15 +92,14 @@ export default function GameModal({ game, setSelected }) {
           <video
             className="video"
             poster={extraContent.thumbnail}
-            src={extraContent.backupVideo}
+            src={extraContent.mainVideo}
             type="video/webm"
             name="media"
             controls
             autoPlay
             ref={videoRef}
-          >
-          </video>
-          ) : null}
+          ></video>
+        ) : null}
       </div>
       {/* contains the reviews from both metacritic and steam, 
                 the release date as well as a description of the game if available */}
@@ -136,7 +133,9 @@ export default function GameModal({ game, setSelected }) {
       {/* contains all of the available deals displayed in a list */}
       <div className="modal-foot">
         <h3>Deals</h3>
-        <ul className="deals-list">{mainContent.deals && !storeLoading ? displayDeals() : null}</ul>
+        <ul className="deals-list">
+          {mainContent.deals && !storeLoading ? displayDeals() : null}
+        </ul>
       </div>
     </div>
   );
@@ -144,9 +143,15 @@ export default function GameModal({ game, setSelected }) {
   //checks to make sure there is a game selected, all data is resolved, whether the modal is visible,
   // and that mainContent has values
   if (isShown) {
-      return <div className="modal-bg">
-        {!gameDataLoading ? displayModalContent() : <p className="loading">loading</p>}
-      </div>;
+    return (
+      <div className="modal-bg">
+        {!gameDataLoading ? (
+          displayModalContent()
+        ) : (
+          <p className="loading">loading</p>
+        )}
+      </div>
+    );
   }
   //return null if the checks aren't met
   return null;

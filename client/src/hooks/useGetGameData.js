@@ -26,7 +26,7 @@ export default function useGetGameData(game) {
           setGameDataLoading(true);
           const res = await axios({
             method: "GET",
-            url: `/steamData?steamID=${game.steamAppID}`,
+            url: `http://localhost:3001/steamData?steamID=${game.steamAppID}`,
             signal: controller.signal
           });
           console.log(res.data);

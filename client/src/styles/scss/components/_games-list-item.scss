@@ -10,37 +10,43 @@
   font-size: 0.85em;
   background: $primary-color;
   color: $secondary-color;
-  transition: 0.25s ease-in-out;
+  transition: background-color 0.25s ease-in-out;
   .item-head {
     display: flex;
     justify-content: space-between;
     align-items: center;
     overflow: hidden;
     text-overflow: ellipsis;
-    // max-width: 70%;
+    flex: 3;
   }
   .item-foot {
     display: flex;
     align-items: center;
     margin: 0 0.75em;
+    flex: 1;
     .normal-price {
+      flex: 1;
       display: block;
       font-size: 0.65em;
       text-decoration: line-through;
     }
     .item-price {
+      flex: 1;
       font-size: 1.15em;
       font-weight: 500;
+      text-align: center;
     }
     .item-savings {
-      // font-weight: 400;
+      flex: 1;
       background: $theme-color;
       padding: 0.35em;
       margin-left: 0.5em;
+      text-align: center;
     }
   }
   .item-title {
     font-size: 1em;
+    margin-right: auto;
   }
   .item-img {
     height: 3.5em;
@@ -51,7 +57,7 @@
     padding: 0.5em;
     background: $primary-color;
     border: 1px solid $theme-color;
-    border-radius: 0.5em;
+    border-radius: 0.25em;
     color: $theme-color;
     margin-right: 0.5em;
     transition: 0.25s ease-in-out background, 0.25s ease-in-out color;
@@ -63,7 +69,7 @@
   }
   &:hover {
     cursor: pointer;
-    background: $primary-color-medium;
+    background-color: $primary-color-medium;
   }
   &.card {
     flex-direction: column;

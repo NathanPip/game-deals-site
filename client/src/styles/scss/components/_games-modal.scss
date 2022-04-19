@@ -4,11 +4,12 @@
   width: 100vw;
   height: 100vh;
   position: fixed;
+  z-index: 4;
   inset: 0;
   overflow: scroll;
   font-size: 1.15em;
   font-weight: 400;
-  background-color: rgba($theme-color, 0.95);
+  background-color: rgba($primary-color, 0.95);
   display: flex;
   justify-content: center;
   .modal-card {
@@ -29,15 +30,14 @@
       margin-top: 1em;
       background: transparent;
       color: $secondary-color;
-      font-size: 1.5em;
+      font-size: 1.35em;
       background: rgba($primary-color, 0.25);
       transition: .25s ease-in-out background;
-      border: none;
-      border-radius: .5em;
+      border: 1px solid $theme-color;
       padding: .15em .25em;
       &:hover {
         cursor: pointer;
-        background: rgba($primary-color, 0.8);
+        background: $primary-color-medium;
       }
     }
     .modal-head {
@@ -93,25 +93,29 @@
         padding: 0;
         margin: 0;
         margin-bottom: 5em;
+        .deal-item:first-of-type {
+          a {
+            border-top: 2px solid $theme-color
+          }
+        }
         a {
           text-decoration: none;
           color: $secondary-color;
-        }
-        img {
-          margin-right: 0.25em;
-        }
-        li {
           display: flex;
           justify-content: space-between;
           align-items: center;
           height: 3em;
           padding: 0.25em 0.5em;
           border: 2px solid $theme-color;
+          border-top: none;
           background: $primary-color;
           transition: 0.25s ease-in-out;
           &:hover {
             background: $primary-color-medium;
           }
+        }
+        img {
+          margin-right: 0.25em;
         }
       }
     }

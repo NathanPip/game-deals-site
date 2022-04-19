@@ -17,7 +17,6 @@
     padding: 2em;
     padding-bottom: 3em;
     border: 2px solid $theme-color-light;
-    border-radius: 1.5em;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -32,7 +31,7 @@
     margin-left: 0;
     &.close-btn {
       font-size: .7em;
-      margin-right: 0;
+      margin-right: -.75em;
       margin-left: auto;
       background: $primary-color;
       border: 2px solid $theme-color-light;

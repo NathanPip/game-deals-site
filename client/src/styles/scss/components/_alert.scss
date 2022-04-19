@@ -4,8 +4,8 @@
   position: fixed;
   margin: 50vh auto 0;
   transform: translateY(-50vh);
-  color: $theme-color-light;
-  background: rgba($secondary-color, .9);
+  color: $secondary-color;
+  background-color: rgba($theme-color, .9);
   font-size: 1.15em;
   padding: .35em;
   border: 2px solid $primary-color;

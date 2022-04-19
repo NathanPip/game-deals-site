@@ -8,17 +8,18 @@ export function useGlobalState() {
   return useContext(GlobalContext);
 }
 
-
 export function GlobalStateProvider({ children }) {
   const [wishlist, setWishlist] = useState([]);
-  const {wishlistLoading, wishlistError, wishlistData} = useGetWishlistGameData();
-  const [alert, setAlert] = useState('');
+  const { wishlistLoading, wishlistError, wishlistData } =
+    useGetWishlistGameData();
+  const [alert, setAlert] = useState("");
   const { storeLoading, stores, storeError } = useGetStoreData();
+  //the game taht will be displayed in the modal
+  const [selectedGame, setSelectedGame] = useState(null);
 
-  useEffect(()=>{
-    if(wishlistData && !wishlistError)
-      setWishlist(wishlistData)
-  }, [wishlistData])
+  useEffect(() => {
+    if (wishlistData && !wishlistError) setWishlist(wishlistData);
+  }, [wishlistData]);
 
   const value = {
     wishlist,
@@ -26,10 +27,12 @@ export function GlobalStateProvider({ children }) {
     wishlistLoading,
     wishlistError,
     stores,
-    storeLoading, 
+    storeLoading,
     storeError,
     alert,
-    setAlert
+    setAlert,
+    selectedGame,
+    setSelectedGame,
   };
   return (
     <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>

@@ -6,19 +6,17 @@ import GamesListItem from "./GamesListItem.jsx";
 export default function Wishlist({ setSelected }) {
   const [hiding, setHiding] = useState(true);
   const { wishlist, wishlistLoading } = useGlobalState();
-  const {currentUser} = useAuth();
+  const { currentUser } = useAuth();
   //renders the games when wishlist is not loading
   function renderGames() {
-    if(!currentUser) {
+    if (!currentUser) {
       return <p className="alert-text">must be signed in</p>;
-    }
-    else if(wishlistLoading && !wishlist) {
+    } else if (wishlistLoading && !wishlist) {
       return <p className="alert-text">loading</p>;
-    }
-    else if (!wishlist.length) {
+    } else if (!wishlist.length) {
       return <p className="alert-text">add games to to wishlist</p>;
     }
-    return wishlist.map(game => {
+    return wishlist.map((game) => {
       return (
         <GamesListItem
           key={game.title}
@@ -32,12 +30,12 @@ export default function Wishlist({ setSelected }) {
 
   //toggles hiding
   const toggleHide = () => {
-    setHiding(prev => !prev);
+    setHiding((prev) => !prev);
   };
   //if options are hiding then display show button
   if (hiding) {
     return (
-      <button className="wishlist-button" onClick={toggleHide}>
+      <button className="form-btn wishlist__button" onClick={toggleHide}>
         Wishlist
       </button>
     );
@@ -45,17 +43,19 @@ export default function Wishlist({ setSelected }) {
 
   //if not hiding then display filter options
   return (
-    <div className="wishlist">
-      <h2 className="wishlist-title">Wishlist</h2>
-      <button className="wishlist-button hide-button" onClick={toggleHide}>
-        Hide
-      </button>
-      {renderGames()}
-      {wishlist.length > 5 ? (
+    <div className="wishlist__container">
+      <div className="wishlist">
         <button className="wishlist-button hide-button" onClick={toggleHide}>
-          Hide
+          Close
         </button>
-      ) : null}
+        <h2 className="wishlist-title">Wishlist</h2>
+        {renderGames()}
+        {wishlist.length > 5 ? (
+          <button className="wishlist-button hide-button hide-button-bottom" onClick={toggleHide}>
+            Close
+          </button>
+        ) : null}
+      </div>
     </div>
   );
 }
