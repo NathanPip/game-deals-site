@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import AccountModal from "./AccountModal.jsx";
 import { useAuth } from "../contexts/authContext.jsx";
 import { useGlobalState } from "../contexts/globalContext.jsx";
@@ -7,8 +7,27 @@ import Wishlist from "./Wishlist";
 export default function Header() {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalType, setModalType] = useState(null);
+  const [lastScrollTop, setLastScrollTop] = useState(0);
   const { currentUser, signout } = useAuth();
   const { setWishlist, setSelectedGame } = useGlobalState();
+  const navRef = useRef();
+
+  useEffect(() => {
+    window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollTop]);
+
+  function handleScroll() {
+    const scrollTop = window.scrollY;
+    console.log(scrollTop + " : " + lastScrollTop);
+    if (scrollTop > lastScrollTop && window.innerWidth < 800) {
+      navRef.current.style.top = "-3.5em";
+    } else {
+      navRef.current.style.top = "0";
+    }
+    setLastScrollTop(scrollTop);
+  }
 
   function handleAccountButtonClick(type) {
     setModalOpen(true);
@@ -55,7 +74,7 @@ export default function Header() {
 
   return (
     <header>
-      <div className="main__nav">
+      <div ref={navRef} className="main__nav">
         <h2 className="nav__brand">
           <span>P</span>
         </h2>

@@ -50,6 +50,7 @@ header {
   border-bottom: 2px solid $theme-color;
   background-color: $primary-color;
   z-index: 3;
+  transition: top .3s ease-in-out;
   .nav__brand {
     text-align: center;
     font-size: 2em;
