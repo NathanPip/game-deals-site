@@ -13,6 +13,7 @@
   },
   "scripts": {
     "start": "vite",
+    "test": "jest",
     "build": "vite build"
   },
   "browserslist": {
@@ -26,5 +27,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.17.10",
+    "babel-jest": "^28.0.3",
+    "cross-env": "^7.0.3",
+    "jest": "^28.0.3"
   }
 }
