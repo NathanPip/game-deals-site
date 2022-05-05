@@ -1,5 +1,5 @@
-import { convertIDs, filterActive, filterGames, timeConverter } from '../helpers/helperFunctions';
-import { gamesListTest, storesTest } from './test-data';
+import { convertIDs, filterActive, filterGames, timeConverter } from '../../helpers/helperFunctions';
+import { gamesListTest, storesTest } from '../test-data';
 
 
 //convert Ids test
