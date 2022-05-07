@@ -1,25 +1,56 @@
-# Player's Plug 
+<p align="center">
+  <a href="https://players-plug.herokuapp.com/">
+    <img src="https://i.ibb.co/9qvvgQN/output-onlinepngtools.png" alt="logo" />
+    </a>
+  </p>
+    <p align="center">
+    <img src="https://media.giphy.com/media/IoyrUUGzUFmtF2B4dO/giphy.gif" />
+  </p>
+  
+  <h1 align="center">Player's Plug </h1>
 
-the place to find the game your looking for at the cheapest possible price
-
-## What is Player's Plug
-
-Player's plug is a responsive database of video game sales made with ReactJS using the Cheapshark and Steam API. Browse a list of the best video game deals available right now across a variety of websites or search for the game of your choosing and find it for the cheapest price available.
 
 ## Features
 
-Fully responsive across all browsers and devices
-A list of all the best video games currently available that can be filtered by price, steam review rating, or store type
-Search for any game and view all currently available deals for that game, a release date and metacritic reviews for the game are also displayed (a trailer as well as description for steam games will be displayed once I configure api calls from steam to satisfy cors)
-Steam functionality will work with CORS Unblock chrome extension
-### Upcoming
-I plan to add the steam data back once I get a proxy server up and running
-I also plan on adding more filter options as well as a wishlist system in the near future
+* Fully responsive across all browsers and devices
+* A list of all the best video games currently available that can be filtered by price, steam review rating, or store type
+* Search for any game and view all currently available deals, a release date, trailer, description, and reviews for the game
+* Create an account and add games to a wishlist
 
+## How To Use
+
+To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+
+```bash
+# Clone this repository
+$ git clone https://github.com/nather22/game-deals-site.git
+
+# Go into the repository
+$ cd games-cheap
+
+# Install dependencies
+$ cd server 
+$ npm install
+$ cd ..
+$ cd client
+$ npm install
+
+# Run the backend server
+$ npm start
+
+#Run the client dev server
+$ cd client
+$ npm start
+```
 ## Technologies
-ReactJS
-Sass
-Axios
-Cheapshark and Steam API
+- ReactJS
+- Sass
+- Axios
+- Node JS
+- Express
+- Postgresql
+- Firebase
+- Cheapshark and Steam API
 
-## Visit Site: https://jovial-borg-52685f.netlify.app/
+## Visit Site: 
+### https://players-plug.herokuapp.com/
